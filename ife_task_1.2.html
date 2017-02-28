@@ -46,9 +46,17 @@
 		.sidebar #vertical{position: absolute;left: 20px;top: 20px;width: 3px;height: 38px;background-color: #cfcfcf;}
 		.sidebar form{font-size: 10px;line-height: 10px;}
 		.sidebar form label{display: block; margin-left: 290px;margin-bottom: 10px;}
-		.sidebar form label span{float: left;margin: 6px 0;width: 84px; text-align: right;}
-		.sidebar form label input{box-sizing: border-box; padding-left: 3px;margin-left:4px; width: 128px;height: 22px;outline: none;border: solid 1px #cccccc;font-size:10px;}
+		.sidebar form label .span1{float: left;margin: 6px 0;width: 84px; text-align: right;}
+		.sidebar form label .span2{margin-top: 2px;}
+		.sidebar form label input[type=text],input[type=password]{box-sizing: border-box; padding-left: 3px;margin-left:4px; width: 128px;height: 22px;outline: none;border: solid 1px #cccccc;font-size:10px;}
 		.sidebar form label .note{margin-left:98px; margin-top:12px;margin-bottom: 24px;color: #a7a7a7;}
+		.sidebar form input[type=radio]{margin-left: 4px; height: 14px;vertical-align: text-bottom;}
+		.sidebar form input[type=checkbox]{margin-left: 4px;vertical-align: text-bottom;}
+		.sidebar form select, .sidebar form textarea{margin-left: 4px; }
+		.sidebar form textarea{font-size: 14px;font-family: Microsoft Yahei; }
+		.sidebar input[type=submit]{ height: 38px;width:100%;border-radius: 6px 6px; font-size: 16px;font-family: Microsoft Yahei;color: white;background-color: #3355d0; }
+		
+		
 
 
 
@@ -201,36 +209,38 @@
 	<h2>这里以后是一个侧栏，这是侧栏的标题</h2>		    
 	<form>
 		<label>
-			<span>请输入邮箱地址</span>
-			<input type="" name="" value="这是一个文本输入框">	
+			<span class="span1">请输入邮箱地址</span>
+			<input type="text" name="" value="这是一个文本输入框">	
 			<div class="note">邮箱地址请按要求格式输入</div>
 		</label>
 		
 		<label>
-			<span>请输入密码</span> 
+			<span class="span1">请输入密码</span> 
 			<input type="password" name="" value="这是一个文本输入框">
 		</label>
 		<label>
-			<span>请重复输入密码</span>
+			<span class="span1">请重复输入密码</span>
 			<input type="password" name="" value="这是一个文本输入框">	
 			<div class="note">密码请为6-16位英文数字</div>
-		</label>
-				
+		</label>			
 		<label>
-			<span>性别</span>
-			<input type="radio" name="" checked>男<input type="radio" name="" >女 
+			<span class="span1 span2">性别</span>
+			<input type="radio" name="gender" checked>男
+			<input type="radio" name="gender" >女 
 		</label>
 		<label>
-			<span>城市</span>
+			<span class="span1 span2">城市</span>
 			<select><option value="北京">北京</option> </select>
 		</label>
 		<label>
-			<span>爱好</span>
-			 <input type="checkbox" name="">运动<input type="checkbox" name="">艺术<input type="checkbox" name="">科学
+			<span class="span1 span2">爱好</span>
+			<input type="checkbox" name="">运动
+			<input type="checkbox" name="">艺术
+			<input type="checkbox" name="">科学
 		</label>
 		<label >
-			<span>个人描述</span>
-			<textarea style="clear: both;">这是一个多行输入框，输入您的个人描述</textarea>
+			<span class="span1 span2">个人描述</span>
+			<textarea cols="100" rows="5">这是一个多行输入框，输入您的个人描述</textarea>
 		</label>
 		<input type="submit" name="" value="确认提交">
 	</form>
