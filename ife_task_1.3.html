@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task 1.3</title>
+	<style type="text/css">
+		*{margin: 0; padding: 20px; box-sizing: border-box; background-color: white; border: solid 1px #999; font-family: Microsoft Yahei;}
+		html{padding:0;}
+
+		.clearfix:after{content: "."; clear:both; display: block; height: 0; visibility: hidden;}
+
+		.main{background-color: #eee; width: 100%;}
+
+		.left{float: left; width: 200px;}
+		.left .team{float: left; padding: 0; width: 80px; height: 80px; background:url(http://images.yyshhhh.com/teams.png); background-position: 0px 0px;}
+		.left .txt {border: none; margin-left: 90px; padding: 0; font-size: 14px; line-height: 14px;}
+
+		.right{float: right; width: 120px;}
+		.right div{width: 80px; height: 80px; margin-bottom: 20px; padding: 0;}
+		.right div:last-child{margin:0;}
+		.right .tm1{ background:url(http://images.yyshhhh.com/teams.png); background-position: 0px -90px;}
+		.right .tm2{ background:url(http://images.yyshhhh.com/teams.png); background-position: 0px -180px;}
+		.right .tm3{ background:url(http://images.yyshhhh.com/teams.png); background-position: 0px -270px;}
+		.right .tm4{ background:url(http://images.yyshhhh.com/teams.png); background-position: 0px -360px;}
+
+		.center{margin-left: 220px; margin-right: 140px;}
+		.center .txt {border: none; padding: 0; font-size: 14px; line-height: 12px;}
+		.center .work{margin: 20px 0; width: 100%;}
+
+
+
+	</style>
+</head>
+<body>
+	<div class="main clearfix">
+		<div class="left clearfix">
+			<div class="team"></div>
+			<div class="txt">「造 · 作」</div>
+		</div>
+		<div class="right">
+			<div class="tm1"></div>
+			<div class="tm2"></div>
+			<div class="tm3"></div>
+			<div class="tm4"></div>
+		</div>
+		<div class="center">
+			<div class="txt">2016年12月，我们小团队的建筑设计作品《造 · 作》有幸参展2016年杭州国际设计周</div>
+			<img class="work" src="http://images.yyshhhh.com/ife/zz.png"></img>
+		</div>
+		
+	</div>
+</body>
+</html>
