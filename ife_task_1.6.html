@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task 1.6</title>
+	<style type="text/css">
+		*{margin:0; padding: 0;}
+		body{width: 980px; height: 1386px; box-sizing: border-box; padding-left: 45px; padding-right: 43px;}
+
+		.clearfix:after{content: ".";display: block; clear: both; height: 0; visibility: hidden;}
+
+		.top{position: relative; width: 892px; border-bottom: solid 2px #938e8c; font:normal 12px/1 SimHei;}
+		.top .redblock{position: relative; padding: 7px; width: 110px; height: 61px; background-color: #d45d5c;}
+		.top .redblock .txt{position: absolute; bottom:7px; color: white; }
+		.top .time{position: absolute; color:#d45d5c; bottom: 6px; right: 0;} 
+
+		.div1{margin-top: 34px; }
+		.div1 .side{float: right; border-top: solid 2px #938e8c; width: 203px;}
+		.div1 .side .title{font:normal 13px/13px Microsoft Yahei;}
+		.div1 .side .title p{display: inline-block; height: 30px; border-bottom: solid 1px #7e7d7d; padding-top:8px; box-sizing: border-box; box-shadow:none,none, 1px 0 #a1a0a0,none; line-height: 24px;}
+		.div1 .side .title p:first-child{margin-top: 4px;}
+		.div1 .side .title p:first-letter{font-size: 18px;}
+		.div1 .side .txt{font:normal 9px/10px Kaiti;margin-top: 5px; }
+		.div1 .side .green{margin-top: 48px; font:italic 116px/1 Microsoft Yahei; color: #77b86b;}
+		.div1 .side .pink{position: relative; height: 55px; font-family: Microsoft Yahei;}
+		.div1 .side .pink .largep{font-size: 55px; line-height: 55px; color:#cc8091; }
+		.div1 .side .pink .smallp{position: absolute; left: 80px; bottom: 11px; font-size: 21px; line-height: 21px; color: #cc8091;}
+		.div1 .side .pink .smallg{position: absolute; left: 80px; bottom: 0px; font-size: 12px; line-height: 12px; color: #bcbbba;}
+
+		.div1 .left{width: 641px;}
+		.div1 .left .bigimg{position: relative; width: 641px; height: 301px; background: url(http://images.yyshhhh.com/lefttop.png);}
+		.div1 .left .bigimg .greencover{position: absolute; left: 0; top: 0; width: 191px; height: 301px; background-color: rgba(66,140,89,0.5);}
+		.div1 .left .bigimg .redcover{position: absolute; right: 0; top: 0; width: 191px; height: 301px; background-color: rgba(204,117,128,0.5);}
+
+		.div1 .left .para{margin-top: 38px;}
+		.div1 .left .para .title{ font:normal 16px/22px Microsoft Yahei; text-decoration: underline;}
+		.div1 .left .para .txt{margin-top: 9px; font:normal 12px/16px SimSun; color: #767777;}
+		.div1 .left .para .para1{float:left; width:228px; margin-right: 28px; }
+		.div1 .left .para .para1 .title{ color: #418c59;}
+		.div1 .left .para .para2{float:left; width:203px; margin-right: 30px; }
+		.div1 .left .para .para2 .title{color: #d2994f;}
+		.div1 .left .para .para3{float:left; width: 152px; height: 106px;}
+		.div1 .left .para .para3 .title{color: #cc7680;}
+		.div1 .left .para .para4{float:right; width: 152px; height: 132px; font:normal 10px/20px Mircosoft Yahei; color: #231815; opacity: 0.7;}
+		.div1 .left .para .para4 span{font-size: 14px; color:  #cd4a48; font-style: italic;}
+
+		.div2{width: 100%; height: 645px;}
+
+		.div2 .left{width: 415px; float: left;}
+		.div2 .left .title{ float: left; width: 415px; height: 154px; border-bottom: solid 1px #11456b;}
+		.div2 .left .title>p:first-child{font:bold 42px/40px SimHei; color:#11456b; }
+		.div2 .left .title span{font:italic bold 72px/72px SimHei; color: #f5e327;}
+		.div2 .left .title>p:last-child{font:bold 33px/33px SimHei; color:#11456b; }
+		.div2 .left .content{clear: both; font:normal 12px/16px SimSun; color: #767777;}
+		.div2 .left .content .img3{float: right; position: relative; top:105px; margin: 16px 0 16px 16px; box-sizing: content-box; width: 167px; height: 288px; background: url(http://images.yyshhhh.com/peitu3.png);background-repeat: no-repeat;}
+
+		.div2 .topd{position: relative; float: right; width: 458px; height: 257px;}
+		.div2 .topd img{opacity: 0.7;}
+		.div2 .topd>div{position: absolute; left: 0; bottom: 0; opacity: 0.4; width: 458px; height: 60px; box-sizing: border-box; padding:8px 0 8px 38px; background-color: black; }
+		.div2 .topd>div .greenstick{float: left; background-color: #72b16a; width: 3px; height: 44px;}
+		.div2 .topd p{display: inline-block; margin-left: 15px; margin-top:9px; font-family: Microsoft Yahei; font-size: 26px; line-height: 26px; color: white; vertical-align: bottom;}
+		.div2 .topd span{font:oblique 12px/1 Microsoft Yahei; color: #72b16a; }
+
+
+		
+	</style>
+</head>
+<body>
+	<div class="top">
+		<div class="redblock">
+			<div class="txt">ife.baidu.com</div>
+		</div>
+		<div class="time">2016.03</div>	
+	</div>
+
+	<div class="div1">
+		<div class="side">
+			<div class="title">
+				<p>ABOUT</p>
+				<br>
+				<p>TECHNOLOGYS</p> 
+			</div>
+			<div class="txt">
+				About technology about technology about technology
+			</div>
+			<div class="green">
+				700
+			</div>
+			<div class="pink">
+				<div class="largep">3.2</div>
+				<div class="smallp">css</div>
+				<div class="smallg">csssssssssss</div>
+			</div>
+		</div>
+		<div class="left clearfix">
+			<div class="bigimg">
+				<div class="greencover"></div>
+				<div class="redcover"></div>
+			</div>
+			<div class="para clearfix">
+				<div class="para1">
+					<div class="title">What</div>
+					<div class="txt">动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次</div>
+				</div>
+				<div class="para2">
+					<div class="title">How</div>
+					<div class="txt">动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次</div>
+				</div>
+					<div class="para3">
+					<div class="title">How</div>
+					<div class="txt">动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次动次打次</div>
+				</div>
+				<div class="para4">
+					What--------<span>40%</span><br>
+					What--------<span>30%</span><br>
+					What--------<span>30%</span><br>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="div2 clearfix">
+		<div class="left">
+			<div class="title">
+				<p><span>THE </span>TECHNOLOGE OF FRONT</p>
+				<p>前端技术领域</p>
+			</div>
+			<div class="content clearfix">
+				<div class="img3"></div>
+				前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次前端前端动次打次
+				
+			</div>
+		</div>
+		<div class="topd">
+			<img src="http://images.yyshhhh.com/peitu2.png">
+			<div>
+				<div class="greenstick"></div>
+				<p>前端技术</p><span>&nbsp;&nbsp;前端技术前端技术</span>
+			</div>
+		</div>
+		<div class="right"></div>
+	</div>
+
+</body>
+</html>
