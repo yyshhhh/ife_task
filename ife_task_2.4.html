@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js task.4</title>
+	<style type="text/css">
+		#result{margin-top: 10px;}
+		span{display: inline-block; background-color: red; color: white; margin:5px; padding: 10px;  font-size: 20px;}
+	</style>
+</head>
+<body>
+	<input type="" name="" id="input">
+	<button id="leftin">左侧入</button>
+	<button id="rightin">右侧入</button>
+	<button id="leftout">左侧出</button>
+	<button id="rightout">右侧出</button>
+	<div id="result">
+		
+	</div>
+
+
+<script type="text/javascript">
+	var input = document.getElementById('input');
+	var leftin = document.getElementById('leftin');
+	var rightin = document.getElementById('rightin');
+	var leftout = document.getElementById('leftout');
+	var rightout = document.getElementById('rightout');
+	var result = document.getElementById('result');
+	
+	// 从左侧插入队列	
+	leftin.onclick = function(){
+		var inputnum = input.value;
+		var newSpan = document.createElement('span');
+		newSpan.innerHTML = inputnum;
+		var fir = result.firstChild
+		if (fir == null){
+			result.appenChild(newSpan);
+		}
+		else {
+			result.insertBefore(newSpan,fir);
+		}
+	}
+
+	//从右侧插入队列
+	rightin.onclick = function () {
+		var inputnum = input.value;
+		var newSpan = document.createElement('span');
+		newSpan.innerHTML = inputnum;
+		result.appendChild(newSpan);
+	}
+
+	// 从左侧移出队列
+	leftout.onclick = function () {
+		var fir = result.firstChild;
+		result.removeChild(fir);
+		alert(fir.innerHTML);
+	}
+
+	// 从右侧移出队列
+	rightout.onclick = function () {
+		var last = result.lastChild;
+		result.removeChild(last);
+		alert(last.innerHTML);
+	}
+
+	// 鼠标单击span时删除
+	result.onclick = function () {
+		var spans = document.getElementsByTagName('span');
+		for (var i = 0; i < spans.length; i ++){
+			spans[i].onclick = function () { 
+				result.removeChild(spans[i]);
+			}
+		}
+	}
+	
+
+</script>
+
+</body>
+</html>
