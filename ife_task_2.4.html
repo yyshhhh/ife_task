@@ -30,23 +30,34 @@
 	// 从左侧插入队列	
 	leftin.onclick = function(){
 		var inputnum = input.value;
-		var newSpan = document.createElement('span');
-		newSpan.innerHTML = inputnum;
-		var fir = result.firstChild
-		if (fir == null){
-			result.appenChild(newSpan);
+		if (/\D/.test(inputnum)) {
+			alert('please input a number');
 		}
-		else {
-			result.insertBefore(newSpan,fir);
+		else{
+			var newSpan = document.createElement('span');
+			newSpan.innerHTML = inputnum;
+			var fir = result.firstChild
+			if (fir == null){
+				result.appenChild(newSpan);
+			}
+			else {
+				result.insertBefore(newSpan,fir);
+			}
 		}
+			
 	}
 
 	//从右侧插入队列
 	rightin.onclick = function () {
 		var inputnum = input.value;
-		var newSpan = document.createElement('span');
-		newSpan.innerHTML = inputnum;
-		result.appendChild(newSpan);
+		if (/\D/.test(inputnum)) {
+			alert('please input a number');
+		}
+		else{
+			var newSpan = document.createElement('span');
+			newSpan.innerHTML = inputnum;
+			result.appendChild(newSpan);
+		}	
 	}
 
 	// 从左侧移出队列
@@ -64,12 +75,16 @@
 	}
 
 	// 鼠标单击span时删除
-	result.onclick = function () {
+	result.onmouseover = function () {
 		var spans = document.getElementsByTagName('span');
 		for (var i = 0; i < spans.length; i ++){
-			spans[i].onclick = function () { 
-				result.removeChild(spans[i]);
-			}
+			var j;
+			spans[i].onclick = function (j) { 
+				return function (){
+					result.removeChild(spans[j]);
+				};
+				
+			}(i);
 		}
 	}
 	
