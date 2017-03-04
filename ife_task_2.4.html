@@ -64,6 +64,7 @@
 	leftout.onclick = function () {
 		var fir = result.firstChild;
 		result.removeChild(fir);
+		//or reslut.removeChild(result.childNodes[0]);
 		alert(fir.innerHTML);
 	}
 
@@ -71,6 +72,7 @@
 	rightout.onclick = function () {
 		var last = result.lastChild;
 		result.removeChild(last);
+		// or result.removeChild(result.childeNodes[result.childNodes.length-1]);
 		alert(last.innerHTML);
 	}
 
@@ -87,6 +89,8 @@
 			}(i);
 		}
 	}
+
+	//看到其他同学单击删除的思路是在创建新span节点的时候加入单击删除的事件，更加合逻辑
 	
 
 </script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js task.4</title>
+	<style type="text/css">
+		#result{
+			margin-top: 10px;
+		}
+		span{
+			display: inline-block;
+		    margin:5px; 
+			background-color: red; 
+			width: 20px;
+		}
+	</style>
+</head>
+<body>
+	<input type="" name="" id="input">
+	<button id="leftin">左侧入</button>
+	<button id="rightin">右侧入</button>
+	<button id="leftout">左侧出</button>
+	<button id="rightout">右侧出</button>
+	<button id="sort">排序（从小到大）</button>
+	<div id="result">
+		
+	</div>
+
+
+<script type="text/javascript">
+	var input = document.getElementById('input');
+	var leftin = document.getElementById('leftin');
+	var rightin = document.getElementById('rightin');
+	var leftout = document.getElementById('leftout');
+	var rightout = document.getElementById('rightout');
+	var sortBtn = document.getElementById('sort');
+	var result = document.getElementById('result');
+	
+	// 从左侧插入队列	
+	leftin.onclick = function(){
+		var inputnum = Number(input.value);
+		if (result.childNodes.length < 60){
+			if (inputnum > 10 & inputnum < 100) {
+				var newSpan = document.createElement('span');
+				newSpan.style.height = inputnum*3 + 'px';
+				if (result.childNodes[0] == null){
+					result.appendChild(newSpan);
+				}
+				else {
+					result.insertBefore(newSpan,result.childNodes[0]);
+				}
+				newSpan.onclick = function () {
+					result.removeChild(this);
+				}
+			}
+			else{
+				alert('please input a number between 10 and 100')
+			}	
+		}
+		else{
+			alert('no more input');
+		}					
+	}
+
+	//从右侧插入队列
+	rightin.onclick = function(){
+		var inputnum = Number(input.value);
+		if (result.childNodes.length < 60){
+			if (inputnum > 10 & inputnum < 100) {
+				var newSpan = document.createElement('span');
+				newSpan.style.height = inputnum*3 + 'px';
+				result.appendChild(newSpan);
+			    newSpan.onclick = function () {
+					result.removeChild(this);
+				}
+			}
+			else{
+				alert('please input a number between 10 and 100')
+			}	
+		}
+		else{
+			alert('no more input');
+		}					
+	}
+
+	// 从左侧移出队列
+	leftout.onclick = function () {
+		result.removeChild(result.firstChild);
+		//or reslut.removeChild(result.childNodes[0]);
+		alert(result.firstChild.innerHTML);
+	}
+
+	// 从右侧移出队列
+	rightout.onclick = function () {
+		result.removeChild(result.lastChild);
+		// or result.removeChild(result.childeNodes[result.childNodes.length-1]);
+		alert(result.lastChild.innerHTML);
+	}
+
+	//从小到大排序
+
+	/*冒泡排序
+
+	*/
+	sortBtn.onclick = function () {
+		var spans = [];
+		for (var i = 0; i < result.childNodes.length; i ++ ){
+			spans[i] = result.childNodes[i];
+		}
+		function stob (a,b) {
+		var height1 = a.style.height.substr(0,2);
+		var height2 = b.style.height.substr(0,2);
+		return (parseInt(height1) - parseInt(height2));
+		}
+		return spans.sort(stob);
+		for (var j = 0; j < result.childNodes.length; j ++ ){
+			result.childNodes[j] = spans[j];
+		}
+		return result;  
+	}
+
+</script>
+
+</body>
+</html>
