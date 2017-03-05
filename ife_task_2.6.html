@@ -9,20 +9,22 @@
 	</style>
 </head>
 <body>
-	<input type="" name="" id="input">
+	<textarea id="text"></textarea>
 	<button id="leftin">左侧入</button>
 	<button id="rightin">右侧入</button>
 	<button id="leftout">左侧出</button>
 	<button id="rightout">右侧出</button>
+	<button id="serch">查询</button>
 	<div id="result"></div>
 
 
 <script type="text/javascript">
-	var input = document.getElementById('input');
+	var input = document.getElementById('text');
 	var leftin = document.getElementById('leftin');
 	var rightin = document.getElementById('rightin');
 	var leftout = document.getElementById('leftout');
 	var rightout = document.getElementById('rightout');
+	var serchBtn = document.getElementById('serch');
 	var result = document.getElementById('result');
 	
 	// 从左侧插入队列	
@@ -36,7 +38,7 @@
 			newSpan.innerHTML = inputnum;
 			var fir = result.firstChild
 			if (fir == null){
-				result.appenChild(newSpan);
+				result.appendChild(newSpan);
 			}
 			else {
 				result.insertBefore(newSpan,fir);
