@@ -29,52 +29,54 @@
 	
 	// 从左侧插入队列	
 	leftin.onclick = function(){
-		var inputnum = input.value;
-		if (/\D/.test(inputnum)) {
-			alert('please input a number');
-		}
-		else{
+		var inputValue = input.value;
+		var inputs = [];
+		inputs = inputValue.split(/[	,， \s]/);
+		for ( var i = 0; i < inputs.length; i ++){
 			var newSpan = document.createElement('span');
-			newSpan.innerHTML = inputnum;
-			var fir = result.firstChild
-			if (fir == null){
+			newSpan.innerHTML = inputs[i];
+			if (result.firstChild == null){
 				result.appendChild(newSpan);
 			}
 			else {
-				result.insertBefore(newSpan,fir);
+				result.insertBefore(newSpan,result.firstChild);
+			}
+			newSpan.onclick = function () {
+					result.removeChild(this);
+			}
+		}		
+	}
+
+	//从右侧插入队列
+	rightin.onclick = function () {
+		var inputValue = input.value;
+		var inputs = [];
+		inputs = inputValue.split(/[	,， \s]/);
+		for ( var i = 0; i < inputs.length; i ++){
+			var newSpan = document.createElement('span');
+			newSpan.innerHTML = inputs[i];
+			result.appendChild(newSpan);
+			newSpan.onclick = function () {
+					result.removeChild(this);
 			}
 		}
 			
 	}
 
-	//从右侧插入队列
-	rightin.onclick = function () {
-		var inputnum = input.value;
-		if (/\D/.test(inputnum)) {
-			alert('please input a number');
-		}
-		else{
-			var newSpan = document.createElement('span');
-			newSpan.innerHTML = inputnum;
-			result.appendChild(newSpan);
-		}	
-	}
-
 	// 从左侧移出队列
 	leftout.onclick = function () {
-		var fir = result.firstChild;
-		result.removeChild(fir);
+		result.removeChild(result.firstChild);
 		//or reslut.removeChild(result.childNodes[0]);
-		alert(fir.innerHTML);
+		alert(result.firstChild.innerHTML);
 	}
 
 	// 从右侧移出队列
 	rightout.onclick = function () {
-		var last = result.lastChild;
-		result.removeChild(last);
+		result.removeChild(result.lastChild);
 		// or result.removeChild(result.childeNodes[result.childNodes.length-1]);
-		alert(last.innerHTML);
+		alert(result.lastChild.innerHTML);
 	}
+
 
 	// 鼠标单击span时删除
 	result.onmouseover = function () {
@@ -90,8 +92,8 @@
 		}
 	}
 
-	//看到其他同学单击删除的思路是在创建新span节点的时候加入单击删除的事件，更加合逻辑
-	
+	//模糊查询
+
 
 </script>
 
