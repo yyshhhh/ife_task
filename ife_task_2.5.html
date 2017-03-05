@@ -22,9 +22,7 @@
 	<button id="leftout">左侧出</button>
 	<button id="rightout">右侧出</button>
 	<button id="sort">排序（从小到大）</button>
-	<div id="result">
-		
-	</div>
+	<div id="result"></div>
 
 
 <script type="text/javascript">
@@ -99,9 +97,6 @@
 
 	//从小到大排序
 
-	/*冒泡排序
-
-	*/
 	sortBtn.onclick = function () {
 		var spans = [];
 		for (var i = 0; i < result.childNodes.length; i ++ ){
@@ -112,12 +107,96 @@
 		var height2 = b.style.height.substr(0,2);
 		return (parseInt(height1) - parseInt(height2));
 		}
-		return spans.sort(stob);
+		spans.sort(stob);
 		for (var j = 0; j < result.childNodes.length; j ++ ){
-			result.childNodes[j] = spans[j];
+			result.removeChild(result.childNodes[j]);
+			result.insertBefore(spans[j],result.childNodes[j]);
 		}
-		return result;  
+		result.appendChild(spans[j]);
 	}
+ 
+	
+//	冒泡排序
+/*
+	sortBtn.onclick = function () {
+		var spans = [];
+		for (var i = 0; i < result.childNodes.length; i ++ ){
+			spans[i] = result.childNodes[i];
+		}
+		for (var j = 0 ; j < spans.length; j ++ ){
+			for ( var k = 0; k < spans.length - j - 1; k ++){
+				var height1 = parseInt(spans[k].style.height);
+				var height2 = parseInt(spans[k+1].style.height);
+				if ( height1 > height2 ){
+					var temp = spans[k+1];
+					spans[k+1] = spans[k];
+					spans[k] = temp;
+				}
+			}
+		}
+		for (var l = 0; l < result.childNodes.length; l ++ ){
+			result.removeChild(result.childNodes[l]);
+			result.insertBefore(spans[l],result.childNodes[l]);
+		}
+		result.appendChild(spans[l]);
+	}
+*/
+
+//选择排序	
+/*
+	sortBtn.onclick = function () {
+		var spans = [];
+		for (var i = 0; i < result.childNodes.length; i ++ ){
+			spans[i] = result.childNodes[i];
+		}
+
+		var minIndex, temp;
+		for (var j = 0 ; j < spans.length-1; j ++ ){
+			minIndex = j;
+			for ( var k = j+1; k < spans.length ; k ++){
+				if (parseInt(spans[k].style.height) < parseInt(spans[minIndex].style.height)){
+					minIndex = k;
+				}
+			}
+			temp = spans[j];
+			spans[j] = spans[minIndex];
+			spans[minIndex] = temp;
+		}
+		
+		for (var l = 0; l < result.childNodes.length; l ++ ){
+			result.removeChild(result.childNodes[l]);
+			result.insertBefore(spans[l],result.childNodes[l]);
+		}
+		result.appendChild(spans[l]);
+	}
+*/
+
+//插入排序
+/*
+	sortBtn.onclick = function () {
+		var spans = [];
+		for (var i = 0; i < result.childNodes.length; i ++ ){
+			spans[i] = result.childNodes[i];
+		}
+
+		var preIndex, current;
+		for (var j = 1 ; j < spans.length; j ++ ){
+			preIndex = j - 1;
+			current = spans[j];
+			while( preIndex >= 0 && parseInt(spans[preIndex].style.height) > parseInt(current.style.height)){
+				spans[preIndex+1] = spans[preIndex];
+				preIndex--;	
+			}
+			spans[preIndex+1] = current;
+		}
+		
+		for (var l = 0; l < result.childNodes.length; l ++ ){
+			result.removeChild(result.childNodes[l]);
+			result.insertBefore(spans[l],result.childNodes[l]);
+		}
+		result.appendChild(spans[l]);
+	}
+*/
 
 </script>
 
