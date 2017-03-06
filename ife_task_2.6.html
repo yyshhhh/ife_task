@@ -5,7 +5,8 @@
 	<title>js task.4</title>
 	<style type="text/css">
 		#result{margin-top: 10px;}
-		span{display: inline-block; background-color: red; color: white; margin:5px; padding: 10px;  font-size: 20px;}
+		span{display: inline-block; background-color: grey; color: white; margin:5px; padding: 10px;  font-size: 20px;}
+		.red{display: inline-block; background-color: red; color: white; margin:5px; padding: 10px;  font-size: 20px;}
 	</style>
 </head>
 <body>
@@ -78,7 +79,14 @@
 	}
 	
 	//模糊查询
-
+	serchBtn.onclick = function () {
+		var serchInput = input.value;
+		for ( var i = 0; i < result.childNodes.length; i ++){
+			if (result.childNodes[i].innerHTML.indexOf(serchInput)>-1){
+				result.childNodes[i].style.backgroundColor = 'red';
+			}
+		}
+	}
 
 </script>
 
