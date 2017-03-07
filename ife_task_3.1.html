@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task 3.1</title>
+	<style type="text/css">
+		body{font: bold 14px/30px Microsoft Yahei;}
+		#tip{margin-left: 40px; font-weight: normal; color: grey;}
+		.blank1{border: solid 1px red;}
+		.blank2{color: red;}
+		.correct1{border: solid 1px green;}
+		.correct2{color: green;}
+		.wrong1{border: solid 1px grey;}
+		.wrong1{color: grey;}
+
+	</style>
+	
+</head>
+<body>
+    <label>名称</label> 
+	<input type="" name="" id="nameInput">
+	<button id="nameBtn">验证</button>
+	<div id="tip">必填，长度为4~16个字符</div>
+
+	<script type="text/javascript">
+		var nameInput = document.getElementById('nameInput');
+		var nameBtn = document.getElementById('nameBtn');
+		var tip = document.getElementById('tip');
+		nameBtn.onclick = function () {
+			var inputValue = nameInput.value;
+			var length;
+			length = inputValue.length + inputValue.match(/[^\x00-\xff]/g).length;
+			if ( length == 0){
+				nameInput.className = 'blank1';
+				tip.className = 'blank2';
+				tip.innerHTML = '姓名不能为空';
+			}
+			else if ( length >= 4 && length <= 16) {
+				nameInput.className = 'correct1';
+				tip.className = 'correct2';
+				tip.innerHTML = '名称格式正确';
+			}
+			else {
+				nameInput.className = 'wrong1';
+				tip.className = 'wrong2';
+				tip.innerHTML = '必填，长度为4~16个字符';
+			}
+
+		}
+	</script>
+</body>
+</html>
