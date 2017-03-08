@@ -7,7 +7,7 @@
 
 		form{width: 300px; font-family: Microsoft Yahei;}
 		form>div{margin: 20px;}
-		label input{float: right; display: inline-block; width: 175px;}
+		label input{float: right; display: inline-block; width: 175px; padding: 0;}
 		label+div{color: grey; margin-left: 85px; font-size: 12px; color:grey;}
 		.wrong input{border: solid 1px red;}
 		.wrong div{color: red;}
@@ -121,6 +121,60 @@
 			}				
 		}
 
+		input3.onfocus = function () {
+			tip3.innerHTML = '再次输入相同密码';
+		}
+
+		input3.onblur = function () {
+			if ( input3.value == input2.value ) {
+				input3.parentNode.parentNode.className = 'correct';
+				tip3.innerHTML = '密码输入一致';
+			}
+			else {
+				input3.parentNode.parentNode.className = 'wrong';
+				tip3.innerHTML = '密码输入不一致';
+			}
+		}
+
+		input4.onfocus = function () {
+			tip4.innerHTML = '必填，输入正确的邮箱地址'
+		}
+
+		input4.onblur = function () {
+			var emValue = input4.value;
+			if ( !emValue ){
+				input4.parentNode.parentNode.className = 'wrong';
+				tip4.innerHTML = '邮箱不能为空';
+			}
+			else if (/^[\w_-]+[\w_-]*@[\w]+(\.[\w]*)+$/.test(emValue)) {
+				input4.parentNode.parentNode.className = 'correct';
+				tip4.innerHTML = '邮箱格式正确';
+			}
+			else{
+				input4.parentNode.parentNode.className = 'wrong';
+				tip4.innerHTML = '邮箱格式错误';
+			}				
+		}
+
+		input5.onfocus = function () {
+			tip5.innerHTML = '必填，输入正确的手机号码'
+		}
+
+		input5.onblur = function () {
+			var phValue = input5.value;
+			if ( !phValue ){
+				input5.parentNode.parentNode.className = 'wrong';
+				tip5.innerHTML = '手机不能为空';
+			}
+			else if (/^1\d{10}$/.test(phValue)) {
+				input5.parentNode.parentNode.className = 'correct';
+				tip5.innerHTML = '手机格式正确';
+			}
+			else{
+				input5.parentNode.parentNode.className = 'wrong';
+				tip5.innerHTML = '手机格式错误';
+			}				
+		}
 
 	</script>
 </body>
