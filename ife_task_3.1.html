@@ -28,22 +28,25 @@
 		var tip = document.getElementById('tip');
 		nameBtn.onclick = function () {
 			var inputValue = nameInput.value;
-			var length;
-			length = inputValue.length + inputValue.match(/[^\x00-\xff]/g).length;
-			if ( length == 0){
+			
+			if ( !inputValue){
 				nameInput.className = 'blank1';
 				tip.className = 'blank2';
 				tip.innerHTML = '姓名不能为空';
 			}
-			else if ( length >= 4 && length <= 16) {
-				nameInput.className = 'correct1';
-				tip.className = 'correct2';
-				tip.innerHTML = '名称格式正确';
-			}
 			else {
-				nameInput.className = 'wrong1';
-				tip.className = 'wrong2';
-				tip.innerHTML = '必填，长度为4~16个字符';
+				var length;
+				length = inputValue.length + inputValue.match(/[^\x00-\xff]/g).length;
+				if ( length >= 4 && length <= 16) {
+					nameInput.className = 'correct1';
+					tip.className = 'correct2';
+					tip.innerHTML = '名称格式正确';
+				}
+				else {
+					nameInput.className = 'wrong1';
+					tip.className = 'wrong2';
+					tip.innerHTML = '必填，长度为4~16个字符';
+				}
 			}
 
 		}

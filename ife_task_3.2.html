@@ -4,9 +4,11 @@
 	<meta charset="UTF-8">
 	<title>task 3.2</title>
 	<style type="text/css">
-		form{width: 300px;}
-		div{margin: 20px;}
+
+		form{width: 300px; font-family: Microsoft Yahei;}
+		form>div{margin: 20px;}
 		label input{float: right;}
+		label+div{color: grey; margin-left: 85px; font-size: 12px; color:grey;}
 		.wrong input{border: solid 1px red;}
 		.wrong div{color: red;}
 		.correct input{border: solid 1px green;}
@@ -19,35 +21,35 @@
 	<div id="name1">
 		<label>
 			<span>名称</span>
-			<input type="" name="">
+			<input type="" name="" id="input1">
 		</label>
 		<div id="tip1"></div>
 	</div>
 	<div id="password1">
 		<label>
 			<span>密码</span>
-			<input type="" name="">
+			<input type="" name="" id="input2">
 		</label>
 		<div id="tip2"></div>
 	</div>
 	<div id="password2">
 		<label>
 			<span>密码确认</span>
-			<input type="" name="">
+			<input type="" name="" id="input3">
 		</label>
 		<div id="tip3"></div>
 	</div>
 	<div id="email">
 		<label>
 			<span>邮箱</span>
-			<input type="" name="">
+			<input type="" name="" id="input4">
 		</label>
 		<div id="tip4"></div>
 	</div>
 	<div id="telphone">
 		<label>
 			<span>手机</span>
-			<input type="" name="">
+			<input type="" name="" id="input5">
 		</label>
 		<div id="tip5"></div>
 	</div>
@@ -56,10 +58,38 @@
 	
 	<script type="text/javascript">
 		var tip1 = document.getElementById('tip1');
-		var tip1 = document.getElementById('tip1');
-		var tip1 = document.getElementById('tip1');
-		var tip1 = document.getElementById('tip1');
-		var tip1 = document.getElementById('tip1');
+		var tip2 = document.getElementById('tip2');
+		var tip3 = document.getElementById('tip3');
+		var tip4 = document.getElementById('tip4');
+		var tip5 = document.getElementById('tip5');
+		var input1 = document.getElementById('input1');
+		var input2 = document.getElementById('input2');
+		var input3 = document.getElementById('input3');
+		var input4 = document.getElementById('input4');
+		var input5 = document.getElementById('input5');
+		
+		input1.onfocus = function () {
+			tip1.innerHTML = '必填，长度为4-16个字符'
+		}
+
+		input1.onblur = function () {
+			var nameValue = input1.value;
+			var length;
+			length = nameValue.length + nameValue.match(/[^\x00-\xff]/g).length;
+			if ( length == 0){
+				input1.parentNode.parentNode.className = 'wrong';
+				tip1.innerHTML = '姓名不能为空';
+			}
+			else if ( length >= 4 && length <= 16) {
+				input1.parentNode.parentNode.className = 'correct';
+				tip1.innerHTML = '名称格式正确';
+			}
+			else {
+				input1.parentNode.parentNode.className = 'wrong';
+				tip1.innerHTML = '必填，长度为4~16个字符';
+			}
+		}
+
 	</script>
 </body>
 </html>
