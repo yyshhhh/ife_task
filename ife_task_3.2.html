@@ -53,7 +53,7 @@
 		</label>
 		<div id="tip5"></div>
 	</div>
-	<button type="submit">提交</button>
+	<button type="submit" id="testBtn">提交</button>
 </form>
 	
 	<script type="text/javascript">
@@ -67,6 +67,8 @@
 		var input3 = document.getElementById('input3');
 		var input4 = document.getElementById('input4');
 		var input5 = document.getElementById('input5');
+		var testBtn = document.getElementById('testBtn');
+		var test1, test2, test3, test4, test5;
 		
 		input1.onfocus = function () {
 			tip1.innerHTML = '必填，长度为4-16个字符'
@@ -80,10 +82,16 @@
 			}
 			else{
 				var length;
-				length = nameValue.length + nameValue.match(/[^\x00-\xff]/g).length;
+				if ( /[^\x00-\xff]/g.exec(nameValue) ){
+					length = nameValue.length + nameValue.match(/[^\x00-\xff]/g).length;
+				}
+				else {
+					length = nameValue.length;
+				}
 				if ( length >= 4 && length <= 16) {
 					input1.parentNode.parentNode.className = 'correct';
 					tip1.innerHTML = '名称格式正确';
+					test1 = 1;
 				}
 				else {
 					input1.parentNode.parentNode.className = 'wrong';
@@ -112,6 +120,7 @@
 				if ( length >= 4 && length <= 16) {
 					input2.parentNode.parentNode.className = 'correct';
 					tip2.innerHTML = '密码可用';
+					test2 = 1;
 				}
 				else {
 					input2.parentNode.parentNode.className = 'wrong';
@@ -129,6 +138,7 @@
 			if ( input3.value == input2.value ) {
 				input3.parentNode.parentNode.className = 'correct';
 				tip3.innerHTML = '密码输入一致';
+				test3 = 1;
 			}
 			else {
 				input3.parentNode.parentNode.className = 'wrong';
@@ -149,6 +159,7 @@
 			else if (/^[\w_-]+[\w_-]*@[\w]+(\.[\w]*)+$/.test(emValue)) {
 				input4.parentNode.parentNode.className = 'correct';
 				tip4.innerHTML = '邮箱格式正确';
+				test4 = 1;
 			}
 			else{
 				input4.parentNode.parentNode.className = 'wrong';
@@ -169,11 +180,21 @@
 			else if (/^1\d{10}$/.test(phValue)) {
 				input5.parentNode.parentNode.className = 'correct';
 				tip5.innerHTML = '手机格式正确';
+				test5 = 1;
 			}
 			else{
 				input5.parentNode.parentNode.className = 'wrong';
 				tip5.innerHTML = '手机格式错误';
 			}				
+		}
+
+		testBtn.onclick = function () {
+			if ( test1 == 1 && test2 == 1 && test3 == 1 && test4 == 1 && test5 == 1){
+				alert('提交成功！');
+			}
+			else {
+				alert('提交失败！');
+			}
 		}
 
 	</script>
