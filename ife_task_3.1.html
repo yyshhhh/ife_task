@@ -36,7 +36,12 @@
 			}
 			else {
 				var length;
-				length = inputValue.length + inputValue.match(/[^\x00-\xff]/g).length;
+				if ( /[^\x00-\xff]/g.exec(inputValue) ){
+					length = inputValue.length + inputValue.match(/[^\x00-\xff]/g).length;
+				}
+				else {
+					length = inputValue.length;
+				}
 				if ( length >= 4 && length <= 16) {
 					nameInput.className = 'correct1';
 					tip.className = 'correct2';
@@ -46,9 +51,9 @@
 					nameInput.className = 'wrong1';
 					tip.className = 'wrong2';
 					tip.innerHTML = '必填，长度为4~16个字符';
+			
 				}
 			}
-
 		}
 	</script>
 </body>
