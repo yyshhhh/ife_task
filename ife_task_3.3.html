@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task 3.3</title>
+	<style type="text/css">
+		.show{display: block;}
+		.hidden{display: none;}
+		div{margin: 20px;}
+		select{width: 150px;}
+	</style>
+</head>
+<body>
+	<form>
+		<div id="sel">
+			<label><input type="radio" name="student" value="在校生" id="radio1" checked="">在校生</label>
+			<label><input type="radio" name="student" value="非在校生" id="radio2">非在校生</label>
+		</div>	
+		<div id="uni">
+			学校
+			<select id="city" onchange="clickOpt()">
+				<option value="0">北京</option>
+				<option value="1">上海</option>
+				<option value="2">浙江</option>
+				<option value="3">广州</option>
+			</select>
+			<select id="university"></select>
+		</div>
+		<div id="com" class="hidden">
+			就业单位<input type="" name="">
+		</div>
+		
+	</form>
+
+<script type="text/javascript">
+	var sel = document.getElementById('sel');
+	var radio1 = document.getElementById('radio1');
+	var radio1 = document.getElementById('radio1');
+	var uni = document.getElementById('uni');
+	var com = document.getElementById('com');
+	var city = document.getElementById('city');
+	var university = document.getElementById('university');
+	var unis = [
+		['北京大学', '清华大学','北京航空航天大学'],
+		['复旦大学', '上海交通大学'],
+		['浙江大学'],
+		['中山大学', '华南理工大学']
+	]
+
+	sel.onclick = function () {
+		if ( radio1.checked ){
+			uni.className = "show";
+			com.className = "hidden";
+		}
+
+		else{
+			uni.className = "hidden";
+			com.className = "show";
+		}
+	}
+
+	function clickOpt()	{
+		if (university.options.length > 0){
+			university.innerHTML = '';
+		}
+		function addOption(val, txt){
+			var opt = document.createElement('option');
+			opt.text = txt;
+			opt.value = val;
+			university.options.add(opt);
+		}
+		switch (+ city.value){
+			case 0:
+				for ( var j = 0; j < unis[0].length; j ++){
+					addOption(j, unis[0][j]);
+				}
+				break;
+			case 1:
+				for ( var k = 0; k < unis[1].length; k ++){
+					addOption(k, unis[1][k]);
+				}
+				break;
+			case 2:
+				for ( var l = 0; l < unis[2].length; l ++){
+					addOption(l, unis[2][l]);
+				}
+				break;
+			case 3:
+				for ( var m = 0; m < unis[3].length; m ++){
+					addOption(m, unis[3][m]);
+				}
+				break;
+		}
+
+	}	
+	</script>
+</body>
+</html>
