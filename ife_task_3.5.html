@@ -10,7 +10,7 @@
 		.side{float: left; width: 50px;}
 		.side div{height: 51px; text-align: center; font: 20px/51px SimSun;}
 
-		#blocks{clear: left;  display: inline-block; width: 509px; height: 509px; border: solid 2px #333333;}
+		#blocks{position: relative; clear: left;  display: inline-block; width: 509px; height: 509px; border: solid 2px #333333;}
 		.clearfix:after{content: '.'; clear: both; display: block; height: 0; overflow: hidden; visibility: hidden;}
 		span{display: block; float: left; margin: 0; padding: 0; width: 50px; height: 50px; border-left:solid 1px #cccccc; border-top:solid 1px #cccccc;}
 		div span:first-child{border-left: none;}
@@ -18,7 +18,7 @@
 
 		.bottom{margin-left: 51px; margin-top: 20px;}
 
-		span .block{transition:1s; width: 50px; height: 50px; background: url(http://images.yyshhhh.com/3.4block.png); background-repeat: no-repeat;}
+		#block{position: absolute; left: 0; top: 0; transition:1s; width: 50px; height: 50px; background: url(http://images.yyshhhh.com/3.4block.png); background-repeat: no-repeat;}
 
 	}
 	</style>
@@ -168,7 +168,8 @@
 			<span></span>
 			<span></span>
 			<span></span>
-		</div>	
+		</div>
+		<div id="block"></div>	
 	</div>
 	<div class="bottom">
 		<input type="" name="" id="order">
@@ -180,22 +181,18 @@
 		var btn = document.getElementById('btn');
 
 		var obj = {
-			x: 5,
-			y: 5,
+			x: 0,
+			y: 0,
 			dir: 0
 		};
 		
 
 		var blocks = document.getElementById('blocks');
-		var block = document.createElement('div');
+		var block = document.getElementById('block');
 
-		shine(obj);
-		
-		//移动后出现方块的格子坐标为x1,y1
 		function shine( obj ){
-			
-			blocks.children[obj.y].children[obj.x].appendChild(block);
-			block.className = 'block';
+			block.style.left = obj.x*51 + 'px';
+			block.style.top = obj.y*51 + 'px';
 			var deg = ((obj.dir%4 == 0 && 0) || (obj.dir%4 == 1 && -90) || (obj.dir%4 == 2 && 180) || (obj.dir%4 == 3 && 90)) +  'deg';
 			block.style.transform = 'rotate(' + deg + ')';
 		}
@@ -258,6 +255,111 @@
 			return obj;
 		}
 
+		//tra lef
+		function  traLef (obj){
+			if (obj.x > 0 ){
+				--obj.x;
+			}
+			else {
+				alert('超过边界')
+			}
+			return obj;
+		}
+
+		//tra top
+		function  traTop (obj){
+			if (obj.y > 0 ){
+				--obj.y;
+			}
+			else {
+				alert('超过边界')
+			}
+			return obj;
+		}
+
+		//tra rig
+		function  traRig (obj){
+			if (obj.x < 9 ){
+				++ obj.x;
+			}
+			else {
+				alert('超过边界')
+			}
+			return obj;
+		}
+
+		//tra bot
+		function  traBot (obj){
+			if (obj.y < 9 ){
+				++obj.y;
+			}
+			else {
+				alert('超过边界')
+			}
+			return obj;
+		}
+
+		//mov lef
+		function  movLef (obj){
+			block.style.transform = 'rotate(-90deg)';
+			if (obj.x > 0 ){
+				--obj.x;
+			}
+			else {
+				alert('超过边界')
+			}
+			block.style.left = obj.x*51 + 'px';
+			block.style.top = obj.y*51 + 'px';
+			obj.dir = 1;
+			return obj;
+		}
+
+		//mov top
+		function  movTop (obj){
+			block.style.transform = 'rotate(0deg)';
+			if (obj.y > 0 ){
+				--obj.y;
+			}
+			else {
+				alert('超过边界')
+			}
+			block.style.left = obj.x*51 + 'px';
+			block.style.top = obj.y*51 + 'px';
+			obj.dir = 0;
+			return obj;
+		}
+
+		//mov rig
+		function  movRig (obj){
+			block.style.transform = 'rotate(90deg)';
+			if (obj.x < 9 ){
+				++ obj.x;
+			}
+			else {
+				alert('超过边界')
+			}
+			block.style.left = obj.x*51 + 'px';
+			block.style.top = obj.y*51 + 'px';
+			obj.dir = 3;
+			return obj;
+		}
+
+		//mov bot
+		function  movBot (obj){
+			block.style.transform = 'rotate(180deg)';
+			if (obj.y < 9 ){
+				++obj.y;
+			}
+			else {
+				alert('超过边界')
+			}
+			block.style.left = obj.x*51 + 'px';
+			block.style.top = obj.y*51 + 'px';
+			obj.dir = 2;
+			return obj;
+		}
+
+
 		btn.onclick = function(){
 			if (order.value.toLowerCase() == "go"){
 				go(obj);
@@ -274,6 +376,38 @@
 			else if (order.value.toLowerCase() == 'tun bac'){
 				turnBac (obj);
 				shine(obj); 
+			}
+
+			else if(order.value.toLowerCase() == 'tra lef'){
+				traLef(obj);
+				shine(obj);
+			}
+			else if(order.value.toLowerCase() == 'mov lef'){
+				movLef(obj);
+			}
+
+			else if(order.value.toLowerCase() == 'tra top'){
+				traTop(obj);
+				shine(obj);
+			}
+			else if(order.value.toLowerCase() == 'mov top'){
+				movTop(obj);
+			}
+
+			else if(order.value.toLowerCase() == 'tra rig'){
+				traRig(obj);
+				shine(obj);
+			}
+			else if(order.value.toLowerCase() == 'mov rig'){
+				movRig(obj);
+			}
+
+			else if(order.value.toLowerCase() == 'tra bot'){
+				traBot(obj);
+				shine(obj);
+			}
+			else if(order.value.toLowerCase() == 'mov bot'){
+				movBot(obj);
 			}
 			else {
 				alert('请输入正确的指令');
