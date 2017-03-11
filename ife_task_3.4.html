@@ -17,6 +17,9 @@
 		#div1 span{border-top:none;}
 
 		.bottom{margin-left: 51px; margin-top: 20px;}
+
+		span .block{width: 50px; height: 50px; background: url(http://images.yyshhhh.com/3.4block.png); background-repeat: no-repeat;}
+
 	}
 	</style>
 </head>
@@ -168,8 +171,116 @@
 		</div>	
 	</div>
 	<div class="bottom">
-		<input type="" name="">
-		<input type="button" name="" value="执行">
+		<input type="" name="" id="order">
+		<input type="button" name="" value="执行" id="btn">
 	</div>
+
+	<script type="text/javascript">
+		var order = document.getElementById('order');
+		var btn = document.getElementById('btn');
+
+		var obj = {
+			x: 5,
+			y: 5,
+			dir: 0
+		};
+		
+
+		var blocks = document.getElementById('blocks');
+		var block = document.createElement('div');
+
+		shine(obj);
+		
+		//移动后出现方块的格子坐标为x1,y1
+		function shine( obj ){
+			
+			blocks.children[obj.y].children[obj.x].appendChild(block);
+			block.className = 'block';
+			var deg = ((obj.dir%4 == 0 && 0) || (obj.dir%4 == 1 && -90) || (obj.dir%4 == 2 && 180) || (obj.dir%4 == 3 && 90)) +  'deg';
+			block.style.transform = 'rotate(' + deg + ')';
+		}
+
+		//TURN lEFT
+		function turnLef (obj) {
+			obj.dir = obj.dir + 1;
+			return obj;
+		}
+
+		//TURN RIGHT
+		function turnRig (obj) {
+			obj.dir = obj.dir + 3;
+			return obj;
+		}
+
+		//TURN BACK
+		function turnBac (obj) {
+			obj.dir = obj.dir + 2;
+			return obj;
+		}
+
+		//GO
+		function go (obj){
+			var dirr = obj.dir % 4;
+			switch(dirr){
+				case 0: 
+					if (obj.y > 0){
+						--obj.y;
+					}
+					else {
+						alert('超过边界')
+					}
+					break;
+				case 1:
+					if (obj.x > 0){
+						--obj.x;
+					}
+					else {
+						alert('超过边界')
+					}
+					break;
+				case 2:
+					if (obj.y < 9){
+						++obj.y;
+					}
+					else {
+						alert('超过边界')
+					}
+					break;
+				case 3:
+					if (obj.x < 9){
+						++obj.x;
+					}
+					else {
+						alert('超过边界')
+					}
+					break;
+			}
+			return obj;
+		}
+
+		btn.onclick = function(){
+			if (order.value.toLowerCase() == "go"){
+				go(obj);
+				shine(obj);
+			}
+			else if (order.value.toLowerCase() == 'tun lef'){
+				turnLef (obj);
+				shine(obj);
+			}
+			else if (order.value.toLowerCase() == 'tun rig'){
+				turnRig (obj);
+				shine(obj);
+			}
+			else if (order.value.toLowerCase() == 'tun bac'){
+				turnBac (obj);
+				shine(obj); 
+			}
+			else {
+				alert('请输入正确的指令');
+			}
+		}
+
+	
+	</script>
 </body>
 </html>
