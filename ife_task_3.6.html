@@ -10,12 +10,13 @@
 
 		.main .hidden{display: none;}
 
-		.main .active{display: block; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 1; width: 100%; height: 100%; }
-		.main .active>div{position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); z-index: 2; width: 600px; height: 400px; background-color: white; font-size: 16px; line-height: 16px;}
-		.main .active>div .d1{box-sizing: border-box; height: 60px; padding: 22px; background-color: #333333; color: white; }
-		.main .active>div .d2{box-sizing: border-box; height: 278px; padding: 22px;  }
-		.main .active>div .d3{box-sizing: border-box; margin: 0 22px 22px 0; }
-		.main .active>div .d3 button{float: right; margin-left: 22px;  box-sizing: border-box; height: 38px; width: 152px; background-color: #333333; color: white;}
+		.main .active{display: block; position: fixed; z-index: 1; width: 100%; height: 100%; }
+		.main .active #popbac{background-color: rgba(0,0,0,0.5); z-index: 2; width: 100%; height: 100%; }
+		.main .active #popdiv{position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); z-index: 3; width: 600px; height: 400px; background-color: white; font-size: 16px; line-height: 16px;}
+		.main .active #popdiv .d1{box-sizing: border-box; height: 60px; padding: 22px; background-color: #333333; color: white; }
+		.main .active #popdiv .d2{box-sizing: border-box; height: 278px; padding: 22px;  }
+		.main .active #popdiv .d3{box-sizing: border-box; margin: 0 22px 22px 0; }
+		.main .active #popdiv .d3 button{float: right; margin-left: 22px;  box-sizing: border-box; height: 38px; width: 152px; background-color: #333333; color: white;}
 
 		.main .top{height: 50px; }
 		.main .top button{float: right; margin-right: 50px; margin-top: 14px;}
@@ -29,7 +30,8 @@
 <body>
 	<div class="main">
 		<div id="popup" class="hidden">
-			<div>
+			<div id="popbac"></div>
+			<div id="popdiv">
 				<div class="d1">浮出层</div>
 				<div class="d2">这是一个浮出层</div>
 				<div class="d3">
@@ -70,9 +72,12 @@
 
 	<script type="text/javascript">
 		var popup = document.getElementById('popup');
+		var popbac = document.getElementById('popbac');
+		var popdiv = document.getElementById('popdiv');
 		var btn = document.getElementById('btn');
 		var btn1 = document.getElementById('btn1');
 		var btn2 = document.getElementById('btn2');
+		var clientX, clientY, moving;
 
 		btn.onclick = function() {
 			popup.className = 'active';
@@ -85,6 +90,33 @@
 		btn2.onclick = function(){
 			popup.className = 'hidden';
 		}
+
+		popbac.onclick = function () {
+			popup.className = 'hidden';
+		} 
+
+		popdiv.onmousedown = function (event) {
+			clientX = event.clientX;
+			clientY = event.clientY;
+			moving = 1;
+		}
+
+		popdiv.onmousemove = function (event) {
+			if (moving == 1) return;
+			var newClientX = event.clientX,
+				newClientY = event.clientY;
+			var left = parseInt(popdiv.style.left) || 0,
+				top = parseInt(popdiv.style.top) || 0;
+			popdiv.style.left = left + (newClientX - clientX) + 'px';
+			popdiv.style.top = top + (newClientY - clientY) + 'px';
+			clientX = newClientX;
+			clientY = newClientY;
+		}
+
+		popdiv.onmouseup = function (event) {
+			moving = 0;
+		}
+
 
 	</script>
 </body>
