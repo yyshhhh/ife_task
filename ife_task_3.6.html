@@ -102,11 +102,11 @@
 		}
 
 		popdiv.onmousemove = function (event) {
-			if (moving == 1) return;
+			if (moving != 1) return;
 			var newClientX = event.clientX,
 				newClientY = event.clientY;
-			var left = parseInt(popdiv.style.left) || 0,
-				top = parseInt(popdiv.style.top) || 0;
+			var left = parseInt(document.defaultView.getComputedStyle(popdiv).left) || 0,
+				top = parseInt(document.defaultView.getComputedStyle(popdiv).top) || 0;
 			popdiv.style.left = left + (newClientX - clientX) + 'px';
 			popdiv.style.top = top + (newClientY - clientY) + 'px';
 			clientX = newClientX;
