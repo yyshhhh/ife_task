@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task 3.7</title>
+    <link rel="stylesheet" type="text/css" href="css3.7.css">
+</head>
+
+<body>
+    <div id="main"></div>
+
+
+    <script src="jquery.js"></script>
+    <script src="table.js"></script>
+    <script type="text/javascript">
+
+        var datas = [
+            {name:'小明', chi:80, math:90, eng:70, sum:240},
+            {name:'小红', chi:90, math:60, eng:90, sum:240},
+            {name:'小亮', chi:60, math:100, eng:70, sum:230}
+        ]
+
+        var collums = [
+        {colName:'姓名', key: 'name', sort:false},
+        {colName:'语文', key:'chi', sort:true},
+        {colName:'数学', key:'math', sort:true},
+        {colName:'英语', key:'eng', sort:true},
+        {colName:'总分', key:'sum', sort:true}
+        ]
+
+        var table1 = table(datas, collums);
+        var main = document.getElementById('main');
+        main.appendChild(table1);
+
+    </script>
+
+</body>
+</html>

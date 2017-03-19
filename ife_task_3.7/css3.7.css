@@ -1,0 +1,60 @@
+        table{
+            table-layout: fixed;
+            border: solid 1px #666666;
+            border-collapse: collapse;
+            font-size: 16px;
+            font-family: Microsoft Yahei;}
+        table thead{background-color: grey; color: white;}
+        table thead th{
+            position:relative;
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            border: solid 1px #666666;}
+        table thead th div{
+            position:absolute;
+            top:11px;
+            right:4px ;
+            width: 8px;}
+        table thead th div span:first-child{
+            display: block;
+            width: 0;
+            height: 0;
+            margin-bottom: 4px;
+            border-top: 0;
+            border-left: solid 4px transparent;
+            border-right: solid 4px transparent;
+            border-bottom: solid 7px white;}
+        table thead th div span:first-child:hover, table thead th div span:first-child:active{
+            display: block;
+            width: 0;
+            height: 0;
+            margin-bottom: 4px;
+            border-top: 0;
+            border-left: solid 4px transparent;
+            border-right: solid 4px transparent;
+            border-bottom: solid 7px #cccccc;}
+        table thead th div span:last-child{
+            display: block;
+            width: 0;
+            height: 0;
+            margin-top: 4px;
+            border-bottom: 0;
+            border-left: solid 4px transparent;
+            border-right: solid 4px transparent;
+            border-top: solid 7px white;}
+        table thead th div span:last-child:hover, table thead th div span:last-child:active{
+            display: block;
+            width: 0;
+            height: 0;
+            margin-top: 4px;
+            border-bottom: 0;
+            border-left: solid 4px transparent;
+            border-right: solid 4px transparent;
+            border-top: solid 7px #cccccc;}
+
+        table tbody td{
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            border: solid 1px #666666;}
