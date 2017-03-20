@@ -30,6 +30,12 @@ function table (data, collums) {
     }
     $table.append($tbody);
 
+    var $spanTop = $('div span:first-child');
+    $spanTop.click(function () {
+        var property = $(this).parent('th').text().get(0);
+        data.sort(sortStob(property));
+
+});
 
 
 
@@ -37,3 +43,17 @@ function table (data, collums) {
 }
 
 window.table = table;
+
+
+
+function sortStob (property) {
+    return function (a, b) {
+        return a[property] - b[property];
+    };
+}
+
+function sortBtos ( property ) {
+    return function(a, b) {
+        return b['"' + property + '"'] - a['"' + property + '"'];
+    };
+}
