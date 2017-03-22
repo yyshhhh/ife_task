@@ -15,22 +15,27 @@
     <script type="text/javascript">
 
         var datas = [
-            {name:'小明', chi:80, math:90, eng:70, sum:240},
-            {name:'小红', chi:90, math:60, eng:90, sum:240},
-            {name:'小亮', chi:60, math:100, eng:70, sum:230}
+            {'姓名':'小明', '语文':80, '数学':90, '英语':70, '总分':240},
+            {'姓名':'小红', '语文':90, '数学':60, '英语':90, '总分':240},
+            {'姓名':'小亮', '语文':60, '数学':100, '英语':70, '总分':230}
         ]
 
         var collums = [
-        {colName:'姓名', key: 'name', sort:false},
-        {colName:'语文', key:'chi', sort:true},
-        {colName:'数学', key:'math', sort:true},
-        {colName:'英语', key:'eng', sort:true},
-        {colName:'总分', key:'sum', sort:true}
+        {colName:'姓名', key: '姓名', sort:false},
+        {colName:'语文', key:'语文', sort:true},
+        {colName:'数学', key:'数学', sort:true},
+        {colName:'英语', key:'英语', sort:true},
+        {colName:'总分', key:'总分', sort:true}
         ]
 
-        var table1 = table(datas, collums);
+
         var main = document.getElementById('main');
+        var table1 = table(datas, collums);
         main.appendChild(table1);
+
+
+
+
 
     </script>
 
