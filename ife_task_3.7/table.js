@@ -1,6 +1,9 @@
 /* global $ */
+var startData, changedData, startCollums;
 
 function table (data, collums) {
+    startData = data;
+    startCollums = collums;
     var table = document.createElement('table');
     var $table = $(table);
     var $thead = $('<thead></thead>');
@@ -30,30 +33,57 @@ function table (data, collums) {
     }
     $table.append($tbody);
 
-    var $spanTop = $('div span:first-child');
-    $spanTop.click(function () {
-        var property = $(this).parent('th').text().get(0);
-        data.sort(sortStob(property));
-
-});
-
-
-
     return table;
 }
 
 window.table = table;
 
-
-
 function sortStob (property) {
     return function (a, b) {
-        return a[property] - b[property];
+        if (a[property] < b[property]){
+            return -1;
+        }
+        else if (a[property] == b[property]){
+            return 0;
+        }
+        else if (a[property] > b[property]){
+            return 1;
+        }
     };
 }
 
-function sortBtos ( property ) {
+function sortBtos (property) {
     return function(a, b) {
-        return b['"' + property + '"'] - a['"' + property + '"'];
+        if (a[property] > b[property]){
+            return -1;
+        }
+        else if (a[property] == b[property]){
+            return 0;
+        }
+        else if (a[property] < b[property]){
+            return 1;
+        }
     };
 }
+
+$('#main').on('click', 'table thead th div span:first-child', function () {
+    var property = $(this).parents('th').text();
+    console.log(property);
+    changedData = startData.sort(sortStob(property));
+    console.log(changedData);
+    var table2 = table(changedData, startCollums);
+    main.innerHTML = '';
+    main.appendChild(table2);
+});
+
+$('#main').on('click', 'table thead th div span:last-child', function () {
+    var property = $(this).parents('th').text();
+    console.log(property);
+    changedData = startData.sort(sortBtos(property));
+    console.log(changedData);
+    var table2 = table(changedData, startCollums);
+    main.innerHTML = '';
+    main.appendChild(table2);
+});
+
+
