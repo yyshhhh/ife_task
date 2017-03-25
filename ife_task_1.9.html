@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task 1.9</title>
+    <style type="text/css">
+
+        *{margin: 0; padding: 0;}
+
+        body{ position: relative; height: 100%; }
+
+        #top{ position: fixed; top: 0; left: 0; height: 56px; width: 100%; background-color: #2189bf;}
+        #top div:first-child{ margin-left: 50px; margin-top: 10px; width: 36px; height: 36px; }
+        #top div:last-child{float: right; }
+
+        #left{ position: fixed; top: 56px; left: 0; width: 260px;  background-color: #2b2e3d; height: calc( 100% - 56px); }
+
+        #main{ margin-left: 260px; margin-top: 56px;  width: calc( 100% - 260px); height: calc( 100% - 56px); }
+
+    </style>
+</head>
+<body>
+
+<div id="top">
+    <div></div>
+    <div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div id="left"></div>
+<div id="main">
+    <div></div>
+</div>
+
+</body>
+</html>
