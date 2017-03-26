@@ -26,7 +26,7 @@
         #left #head #usename{float: left; margin-top: 40px; margin-left: 18px; color: white; font:16px/16px SimHei; }
 
         #left #number{ height: 50px; color: #6e8095; }
-        #left #number>div{display: inline-block; width: 84px;}
+        #left #number>div{float: left; width: 84px;}
         #left #number>div:first-child{margin-left: 33px;}
         #left #number .head1>div:first-child{ font:16px/16px SimHei; text-align: center; }
         #left #number .head1>div:last-child{font:12px/16px SimHei; text-align: center; }
@@ -35,12 +35,35 @@
         #left .active{height: 191px; background-color: #383d4e;}
         #left .activefont{color: #ededef; font:12px/1 SimHei;}
         #left .activetitle{padding-left: 46px; height: 37px;}
+        #left .activetitle>div{float: left;}
         #left .active .icon{width: 12px; height: 12px; margin-top: 16px; }
-        #left .active .txt{margin-top: 17px; margin-left: 13px;}
+        #left .active .table{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px 0px;}
+        #left .active .txt{margin-top: 15px; margin-left: 12px;}
+
+        #left .active .line1{height: 30px;}
+        #left .active .line1>div{float:left;}
+        #left .active .line1 .iconleft, #left .active .line1 .icondown{margin-left: 67px; margin-top: 10px; height: 10px; width: 11px;}
+         #left .active .line1 .iconleft{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -87px;}
+          #left .active .line1 .icondown{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -107px;}
+        #left .active .line1 .iconfile{margin-left: 7px; margin-top: 10px; height: 12px; width: 12px; background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -127px;}
+        #left .active .activefont .iconfile{margin-left: 7px; margin-top: 10px; height: 12px; width: 12px; background: url(http://images.yyshhhh.com/ife/left11.png);background-position: 0px -149px; }
+        #left .active .line1 .txt1{margin-left: 4px; margin-top: 10px;}
+
+        #left .active .line2{height: 30px;}
+        #left .active .line2>div{float: left;}
+        #left .active .line2 .icontxt{margin-left: 100px; margin-top: 10px; height: 12px; width: 11px; background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -171px;}
+         #left .active .activefont .icontxt{margin-left: 100px; margin-top: 10px; height: 12px; width: 11px; background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -192px;}
+        #left .active .line2 .txt2{margin-left: 4px; margin-top: 10px;}
 
         #left .normal{padding-left: 46px; height: 48px; color: #6e8095; font:12px/1 SimHei;}
+        #left .normal>div {float: left;}
         #left .normal .icon{ width: 12px; height: 12px; margin-top: 16px; }
-        #left .normal .txt{margin-top: 17px; margin-left: 13px;}
+        #left .normal .star{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -22px;}
+        #left .normal .up{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -43px; }
+        #left .normal .book{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -65px;}
+        #left .normal .txt{margin-top: 17px; margin-left: 12px;}
+
+        #left .normalfont{ color: #6e8095; font:12px/1 SimHei;}
 
 
 
@@ -77,30 +100,54 @@
             <div>粉丝</div>
         </div>
     </div>
-    <div class="active">
+    <div class="active normalfont">
         <div class="activetitle">
-            <div class="icon"></div>
+            <div class="icon table"></div>
             <div class="txt activefont">个人报表</div>
         </div>
+        <div class="line1">
+            <div class="iconleft"></div>
+            <div class="iconfile"></div>
+            <div class="txt1">文件一</div>
+        </div>
+        <div class="line1 activefont">
+            <div class="icondown"></div>
+            <div class="iconfile"></div>
+            <div class="txt1 activefont">文件二</div>
+        </div>
+        <div class="line2 activefont">
+            <div class="icontxt"></div>
+            <div class="txt2">文档1</div>
+        </div>
+        <div class="line2">
+            <div class="icontxt"></div>
+            <div class="txt2 normalfont">文档2</div>
+        </div>
+        <div class="line1">
+            <div class="iconleft"></div>
+            <div class="iconfile"></div>
+            <div class="txt1">文件三</div>
+        </div>
+
     </div>
     <div class="normal">
-        <div class="icon"></div>
-        <div class="txt">个人收藏</div>
+        <div class="icon star"></div>
+        <div class="txt ">个人收藏</div>
     </div>
     <div class="normal">
-        <div class="icon"></div>
+        <div class="icon up"></div>
         <div class="txt">我的分享</div>
     </div>
     <div class="normal">
-        <div class="icon"></div>
+        <div class="icon star"></div>
         <div class="txt">图库</div>
     </div>
     <div class="normal">
-        <div class="icon"></div>
+        <div class="icon star"></div>
         <div class="txt">成长记录</div>
     </div>
     <div class="normal">
-        <div class="icon"></div>
+        <div class="icon book"></div>
         <div class="txt">账户信息</div>
     </div>
 </div>
