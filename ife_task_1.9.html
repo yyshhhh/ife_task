@@ -7,7 +7,7 @@
 
         *{margin: 0; padding: 0;}
 
-        html, body{height: 100%; width:100%;}
+        html, body{height: 100%; width:100%; overflow: hidden;}
 
         body{ position: relative;}
 
@@ -69,7 +69,39 @@
 
 
 
-        #main{ margin-left: 260px; margin-top: 56px;  width: calc( 100% - 260px); height: calc( 100% - 56px); background-color: #eeeeed; }
+        #main{position: relative; margin-left: 260px; margin-top: 56px;  width: calc( 100% - 260px); height: calc( 100% - 56px); background-color: #eeeeed; overflow: scroll;}
+
+        #main #nav{box-sizing: border-box; padding-left: 30px; width: 100%; height: 30px; background-color: white; }
+        #main #nav a:link{color: #aaaaaa; font: 12px/30px SimHei; text-decoration: none;}
+        #main #nav a:visited{color: #2189bf;  font: 12px/30px SimHei; text-decoration: none;}
+        #main #nav a:hover{color: #2189bf;  font: 12px/30px SimHei; text-decoration: none;}
+        #main #nav a:visited{color: #2189bf;  font: 12px/30px SimHei; text-decoration: none;}
+        #main #mainbox{margin: 19px auto;  width: 891px; height: 1000px;}
+        #main .border{border: 1px solid #dcdedf;  background-color: white;}
+
+        #main #box1{position: relative; width: 899px; height: 84px; font-size: 12px; font-family: SimHei; color: #c2c3c4; }
+        #main #box1 .selbor{height: 23px; border: 1px solid #c2c3c4; box-shadow: -1px -1px #f4f4f4;}
+
+        #main #box1 div:first-child{margin-bottom: 5px;}
+        #main #box1 select, #main #box1 input{ height: 23px; font-size: 12px; font-family: SimHei; color: #323333; background: none;}
+        #main #box1 .label1{margin-left: 29px;}
+        #main #box1 .label1 select{width: 68px;  margin-top: 15px; margin-left: 15px; }
+        #main #box1 .label2{margin-left: 38px;}
+        #main #box1 .label2 select{width: 117px;  margin-top: 15px; margin-left: 15px; }
+        #main #box1 .label3{margin-left: 60px;}
+        #main #box1 .label3 input{box-sizing: border-box; width: 117px;  margin-top: 15px; margin-left: 15px;  padding-left: 7px;}
+        #main #box1 .label4{margin-left: 15px;}
+        #main #box1 .label4 select{width: 68px;  margin-top: 15px; margin-left: 11px; }
+        #main #box1 .label5{margin-left: 192px;}
+        #main #box1 .label5 select{width: 117px;  margin-left: 15px; }
+        #main #box1 .label6{margin-left: 60px;}
+        #main #box1 .label6 select{width: 67px;   margin-left: 15px;}
+        #main #box1 .label7{margin-left: 15px;}
+        #main #box1 .label7 select{width: 118px;   margin-left: 11px; }
+
+        #main #box1 #change{position: absolute; top: 23px; left: 348px; background: url(http://images.yyshhhh.com/ife/change.png); width: 28px; height: 38px; }
+        #main #box1 button{position: absolute; top: 31px; right: 111px; border: 1px solid #388ac1; border-radius: 2px; width: 48px; height: 23px;  background-color: #388ac1; color: white; font-size: 12px; font-family: SimHei;}
+
 
     </style>
 </head>
@@ -155,7 +187,38 @@
 </div>
 
 <div id="main">
-    <div></div>
+    <div id="nav">
+        <a href="">C站 /</a>
+        <a href=""> 个人报表 /</a>
+        <a href=""> 文件一 /</a>
+        <a href=""> 文档1 </a>
+    </div>
+    <div id="mainbox">
+        <div id="box1" class="border">
+            <div>
+                <label class="label1">查询项<select class="selbor"><option>第一项</option></select>
+                </label>
+                <label class="label2">买方<select class="selbor"><option>小A</option></select>
+                </label>
+                <label class="label3">日期<input class="selbor" value="2016-04-01">
+                </label>
+                <label class="label4">总耗时<select class="selbor"><option>8天</option></select>
+                </label>
+            </div>
+            <div>
+                <label class="label5">卖方<select class="selbor"><option>小C</option></select>
+                </label>
+                <label class="label6">人数<select class="selbor"><option>10人</option></select>
+                </label>
+                <label class="label7">成交项<select class="selbor"><option>10项</option></select>
+                </label>
+            </div>
+            <div id="change"></div>
+            <button id="search">搜索</button>
+
+        </div>
+
+    </div>
 </div>
 
 </body>
