@@ -79,9 +79,10 @@
         #main #mainbox{margin: 19px auto;  width: 891px; height: 1000px;}
         #main .border{border: 1px solid #dcdedf;  background-color: white;}
 
-        #main #box1{position: relative; width: 899px; height: 84px; font-size: 12px; font-family: SimHei; color: #c2c3c4; }
+        #main #box1{position: relative; width: 889px; height: 84px; font-size: 12px; font-family: SimHei; color: #c2c3c4; }
         #main #box1 .selbor{height: 23px; border: 1px solid #c2c3c4; box-shadow: -1px -1px #f4f4f4;}
 
+        #main #box1>div{width: 889px;}
         #main #box1 div:first-child{margin-bottom: 5px;}
         #main #box1 select, #main #box1 input{ height: 23px; font-size: 12px; font-family: SimHei; color: #323333; background: none;}
         #main #box1 .label1{margin-left: 29px;}
@@ -101,6 +102,25 @@
 
         #main #box1 #change{position: absolute; top: 23px; left: 348px; background: url(http://images.yyshhhh.com/ife/change.png); width: 28px; height: 38px; }
         #main #box1 button{position: absolute; top: 31px; right: 111px; border: 1px solid #388ac1; border-radius: 2px; width: 48px; height: 23px;  background-color: #388ac1; color: white; font-size: 12px; font-family: SimHei;}
+
+        #main #box2{margin-top: 9px; width: 100%; height: 65px; }
+        #main #box2 .borlefttop{border-left: 1px solid #dadcde; border-top: 1px solid #cacdd1;}
+        #main #box2>div{float: left; margin-right: 4px; height: 64px; background-color: white;}
+        #main #box2>div:last-child{margin: 0; width:130px;}
+
+        #main #box2 .dirbox{ width: 30px;}
+        #main #box2 .floatbox{ width: 110px;}
+        #main #box2 .active>div:first-child{visibility: visible; height: 3px; width: 100%; background-color: #4388c8;}
+        #main #box2 .normal>div:first-child{visibility: hidden; height: 3px; width: 100%; background-color: #4388c8;}
+        #main #box2 .floatbox .time{margin-top: 11px; font:12px/1 Microsoft Yahei; color: black; text-align: center;}
+        #main #box2 .floatbox>div:last-child{margin-top: 10px; font:21px/1 Microsoft Yahei; color: #ec6500; text-align: center;}
+        #main #box2 .floatbox>div:last-child span{font:12px/1 Microsoft Yahei; color: #aeaeae; }
+
+        #main #box2 #box21>div{margin-left: 10px; margin-top: 23px; width: 10px; height: 17px; background: url(http://images.yyshhhh.com/ife/3.png); background-position: 0px 0px;}
+        #main #box2 #box28>div{margin-left: 10px; margin-top: 23px; width: 10px; height: 17px; background: url(http://images.yyshhhh.com/ife/3.png); background-position: 0px -27px;}
+        #main #box2 #box29>div{float: left;}
+        #main #box2 #box29>div:first-child{margin-left: 18px; margin-top: 16px; width: 32px; height: 32px; background: url(http://images.yyshhhh.com/ife/3.png); background-position: 0px -54px;}
+        #main #box2 #box29>div:last-child{margin-left: 11px; margin-top: 27px; color: #535353; font: 12px/1 Microsoft Yahei;}
 
 
     </style>
@@ -215,7 +235,49 @@
             </div>
             <div id="change"></div>
             <button id="search">搜索</button>
+        </div>
 
+        <div id="box2">
+            <div class="borlefttop dirbox" id="box21">
+                <div></div>
+            </div>
+            <div class="borlefttop floatbox active" id="box22">
+                <div></div>
+                <div class="time">10:00 am</div>
+                <div><span>¥</span>1200</div>
+            </div>
+            <div class="borlefttop floatbox normal" id="box23">
+                <div></div>
+                <div class="time">11:00 am</div>
+                <div><span>¥</span>1300</div>
+            </div>
+            <div class="borlefttop floatbox normal" id="box24">
+                <div></div>
+                <div class="time">12:00 am</div>
+                <div><span>¥</span>1200</div>
+            </div>
+            <div class="borlefttop floatbox normal" id="box25">
+                <div></div>
+                <div class="time">01:00 am</div>
+                <div><span>¥</span>1400</div>
+            </div>
+            <div class="borlefttop floatbox normal" id="box26">
+                <div></div>
+                <div class="time">02:00 am</div>
+                <div><span>¥</span>1500</div>
+            </div>
+            <div class="borlefttop floatbox normal" id="box27">
+                <div></div>
+                <div class="time">03:00 am</div>
+                <div><span>¥</span>1800</div>
+            </div>
+            <div class="borlefttop dirbox" id="box28">
+                <div></div>
+            </div>
+            <div class="borlefttop" id="box29">
+                <div></div>
+                <div>历史查询</div>
+            </div>
         </div>
 
     </div>
