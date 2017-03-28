@@ -1,0 +1,227 @@
+
+        *{margin: 0; padding: 0;}
+
+        html, body{height: 100%; width:100%; overflow: hidden;}
+
+        body{ position: relative;}
+
+        #top{ position: fixed; top: 0; left: 0; height: 56px; width: 100%; background-color: #2189bf;}
+        #top #search,  #top #log, #top #logimg{float: right; }
+        #top #log{margin-top: 23px; margin-right: 94px; color: white; font: 12px/12px SimHei;}
+        #top #logimg{ margin-top: 20px; margin-right: 3px; width: 15px; height: 16px; background: url(http://images.yyshhhh.com/result1.png); background-position: 0px -73px;}
+        #top #search{margin-top: 14px; margin-right: 21px; height: 26px; width: 310px ; border: 1px solid #abd3e7; border-radius: 12px; background-color: white;}
+        #top #search div{margin-top: 4px; margin-left: 16px; width: 17px; height: 17px; background: url(http://images.yyshhhh.com/result1.png); background-position: 0px -46px;}
+        #top #logo{ margin-left: 50px; margin-top: 10px; width: 36px; height: 36px; background: url(http://images.yyshhhh.com/result1.png); background-position: 0px 0px;}
+
+
+        #left{ position: fixed; top: 56px; left: 0; width: 260px;  background-color: #2b2e3d; height: calc( 100% - 56px); }
+
+        #left #head{height: 100px;}
+        #left #head #headbox{float: left; margin-top: 18px; margin-left: 45px; border: 2px solid #b9babe; border-radius: 28px; padding: 3px;  width: 46px; height: 46px;}
+        #left #head #headbox div{border-radius: 23px; width: 46px; height: 46px; background-color: #b9babe; }
+        #left #head #usename{float: left; margin-top: 40px; margin-left: 18px; color: white; font:16px/16px SimHei; }
+
+        #left #number{ height: 50px; color: #6e8095; }
+        #left #number>div{float: left; width: 84px;}
+        #left #number>div:first-child{margin-left: 33px;}
+        #left #number .head1>div:first-child{ font:16px/16px SimHei; text-align: center; }
+        #left #number .head1>div:last-child{font:12px/16px SimHei; text-align: center; }
+        #left #number #seperator{height: 29px; width: 2px; background-color: #313545;}
+
+        #left .active{height: 191px; background-color: #383d4e;}
+        #left .activefont{color: #ededef; font:12px/1 SimHei;}
+        #left .activetitle{padding-left: 46px; height: 37px;}
+        #left .activetitle>div{float: left;}
+        #left .active .icon{width: 12px; height: 12px; margin-top: 16px; }
+        #left .active .table{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px 0px;}
+        #left .active .txt{margin-top: 15px; margin-left: 12px;}
+
+        #left .active .line1{height: 30px;}
+        #left .active .line1>div{float:left;}
+        #left .active .line1 .iconleft, #left .active .line1 .icondown{margin-left: 67px; margin-top: 10px; height: 10px; width: 11px;}
+         #left .active .line1 .iconleft{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -87px;}
+          #left .active .line1 .icondown{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -107px;}
+        #left .active .line1 .iconfile{margin-left: 7px; margin-top: 10px; height: 12px; width: 12px; background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -127px;}
+        #left .active .activefont .iconfile{margin-left: 7px; margin-top: 10px; height: 12px; width: 12px; background: url(http://images.yyshhhh.com/ife/left11.png);background-position: 0px -149px; }
+        #left .active .line1 .txt1{margin-left: 4px; margin-top: 10px;}
+
+        #left .active .line2{height: 30px;}
+        #left .active .line2>div{float: left;}
+        #left .active .line2 .icontxt{margin-left: 100px; margin-top: 10px; height: 12px; width: 11px; background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -171px;}
+         #left .active .activefont .icontxt{margin-left: 100px; margin-top: 10px; height: 12px; width: 11px; background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -192px;}
+        #left .active .line2 .txt2{margin-left: 4px; margin-top: 10px;}
+
+        #left .normal{padding-left: 46px; height: 48px; color: #6e8095; font:12px/1 SimHei;}
+        #left .normal>div {float: left;}
+        #left .normal .icon{ width: 12px; height: 12px; margin-top: 16px; }
+        #left .normal .star{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -22px;}
+        #left .normal .up{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -43px; }
+        #left .normal .book{background: url(http://images.yyshhhh.com/ife/left11.png); background-position: 0px -65px;}
+        #left .normal .txt{margin-top: 17px; margin-left: 12px;}
+
+        #left .normalfont{ color: #6e8095; font:12px/1 SimHei;}
+
+
+
+        #main{position: relative; margin-left: 260px; margin-top: 56px;  width: calc( 100% - 260px); height: calc( 100% - 56px); background-color: #eeeeed; overflow: scroll;}
+
+        #main #nav{box-sizing: border-box; padding-left: 30px; width: 100%; height: 30px; background-color: white; }
+        #main #nav a:link{color: #aaaaaa; font: 12px/30px SimHei; text-decoration: none;}
+        #main #nav a:visited{color: #2189bf;  font: 12px/30px SimHei; text-decoration: none;}
+        #main #nav a:hover{color: #2189bf;  font: 12px/30px SimHei; text-decoration: none;}
+        #main #nav a:visited{color: #2189bf;  font: 12px/30px SimHei; text-decoration: none;}
+        #main #mainbox{margin: 19px auto;  width: 891px; height: 1000px;}
+
+        #main .border{border: 1px solid #dcdedf;  background-color: white; box-shadow: -1px -1px #e5e6e6;}
+        #main .roundborder{border: 1px solid #dcdedf; border-radius: 5px; box-shadow: -1px -1px #e5e6e6; background-color: white;}
+
+        #main #box1{position: relative; width: 889px; height: 84px; font-size: 12px; font-family: SimHei; color: #c2c3c4; }
+        #main #box1 .selbor{height: 23px; border: 1px solid #c2c3c4; box-shadow: -1px -1px #f4f4f4;}
+
+        #main #box1>div{width: 889px;}
+        #main #box1 div:first-child{margin-bottom: 5px;}
+        #main #box1 select, #main #box1 input{ height: 23px; font-size: 12px; font-family: SimHei; color: #323333; background: none;}
+        #main #box1 .label1{margin-left: 29px;}
+        #main #box1 .label1 select{width: 68px;  margin-top: 15px; margin-left: 15px; }
+        #main #box1 .label2{margin-left: 38px;}
+        #main #box1 .label2 select{width: 117px;  margin-top: 15px; margin-left: 15px; }
+        #main #box1 .label3{margin-left: 60px;}
+        #main #box1 .label3 input{box-sizing: border-box; width: 117px;  margin-top: 15px; margin-left: 15px;  padding-left: 7px;}
+        #main #box1 .label4{margin-left: 15px;}
+        #main #box1 .label4 select{width: 68px;  margin-top: 15px; margin-left: 11px; }
+        #main #box1 .label5{margin-left: 192px;}
+        #main #box1 .label5 select{width: 117px;  margin-left: 15px; }
+        #main #box1 .label6{margin-left: 60px;}
+        #main #box1 .label6 select{width: 67px;   margin-left: 15px;}
+        #main #box1 .label7{margin-left: 15px;}
+        #main #box1 .label7 select{width: 118px;   margin-left: 11px; }
+
+        #main #box1 #change{position: absolute; top: 23px; left: 348px; background: url(http://images.yyshhhh.com/ife/change.png); width: 28px; height: 38px; }
+        #main #box1 button{position: absolute; top: 31px; right: 111px; border: 1px solid #388ac1; border-radius: 2px; width: 48px; height: 23px;  background-color: #388ac1; color: white; font-size: 12px; font-family: SimHei;}
+
+        #main #box2{margin-top: 9px; width: 100%; height: 65px; }
+        #main #box2 .borlefttop{border-left: 1px solid #dadcde; border-top: 1px solid #cacdd1;}
+        #main #box2>div{float: left; margin-right: 4px; height: 64px; background-color: white;}
+        #main #box2>div:last-child{margin: 0; width:130px;}
+
+        #main #box2 .dirbox{ width: 30px;}
+        #main #box2 .floatbox{ width: 110px;}
+        #main #box2 .active>div:first-child{visibility: visible; height: 3px; width: 100%; background-color: #4388c8;}
+        #main #box2 .normal>div:first-child{visibility: hidden; height: 3px; width: 100%; background-color: #4388c8;}
+        #main #box2 .floatbox .time{margin-top: 11px; font:12px/1 Microsoft Yahei; color: black; text-align: center;}
+        #main #box2 .floatbox>div:last-child{margin-top: 10px; font:21px/1 Microsoft Yahei; color: #ec6500; text-align: center;}
+        #main #box2 .floatbox>div:last-child span{font:12px/1 Microsoft Yahei; color: #aeaeae; }
+
+        #main #box2 #box21>div{margin-left: 10px; margin-top: 23px; width: 10px; height: 17px; background: url(http://images.yyshhhh.com/ife/3.png); background-position: 0px 0px;}
+        #main #box2 #box28>div{margin-left: 10px; margin-top: 23px; width: 10px; height: 17px; background: url(http://images.yyshhhh.com/ife/3.png); background-position: 0px -27px;}
+        #main #box2 #box29>div{float: left;}
+        #main #box2 #box29>div:first-child{margin-left: 18px; margin-top: 16px; width: 32px; height: 32px; background: url(http://images.yyshhhh.com/ife/3.png); background-position: 0px -54px;}
+        #main #box2 #box29>div:last-child{margin-left: 11px; margin-top: 27px; color: #535353; font: 12px/1 Microsoft Yahei;}
+
+        #main #box3{margin-top: 17px; width: 100%; }
+        #main #box3 .title{height: 22px; font:12px/22px Microsoft Yahei;}
+        #main #box3 .floatcont{height: 72px; width: 100%; }
+        #main #box3 .floatcont>div{float: left; margin-right: 27px; width: 200px; height:70px;}
+        #main #box3 .floatcont>div:last-child{ float: left; margin: 0; width: 202px;}
+
+        #main #box3 .floatcont .green>div:first-child{float: left; height: 100%; width: 3px; background-color: #43b29e; }
+        #main #box3 .floatcont .green .content{float: left; margin-left: 8px; margin-top: 20px; }
+        #main #box3 .floatcont .green .content>div:first-child{margin-bottom: 14px; font:12px/1 SimHei; color: #323333;}
+        #main #box3 .floatcont .green .content>div:last-child{font:10px/1 SimHei; color: #aaaaaa;}
+        #main #box3 .floatcont .green>div:last-child{float: right;  width: 60px; height: 46px; margin-top: 12px; margin-right: 15px; background-color: #43b29e;}
+
+        #main #box3 .floatcont .blue>div:first-child{float: left; height: 100%; width: 3px; background-color: #388ac1; }
+        #main #box3 .floatcont .blue .content{float: left; margin-left: 8px; margin-top: 20px; }
+        #main #box3 .floatcont .blue .content>div:first-child{margin-bottom: 14px; font:12px/1 SimHei; color: #323333;}
+        #main #box3 .floatcont .blue .content>div:last-child{font:10px/1 SimHei; color: #aaaaaa;}
+        #main #box3 .floatcont .blue>div:last-child{float: right;  width: 60px; height: 46px; margin-top: 12px; margin-right: 15px; background-color: #388ac1;}
+
+        #main #box3 .floatcont .orange>div:first-child{float: left; height: 100%; width: 3px; background-color: #d04a36; }
+        #main #box3 .floatcont .orange .content{float: left; margin-left: 8px; margin-top: 20px; }
+        #main #box3 .floatcont .orange .content>div:first-child{margin-bottom: 14px; font:12px/1 SimHei; color: #323333;}
+        #main #box3 .floatcont .orange .content>div:last-child{font:10px/1 SimHei; color: #aaaaaa;}
+        #main #box3 .floatcont .orange>div:last-child{float: right;  width: 60px; height: 46px; margin-top: 12px; margin-right: 15px; background-color: #d04a36;}
+
+        #main #box3 .floatcont .yellow>div:first-child{float: left; height: 100%; width: 3px; background-color: #e2cd46; }
+        #main #box3 .floatcont .yellow .content{float: left; margin-left: 8px; margin-top: 20px; }
+        #main #box3 .floatcont .yellow .content>div:first-child{margin-bottom: 14px; font:12px/1 SimHei; color: #323333;}
+        #main #box3 .floatcont .yellow .content>div:last-child{font:10px/1 SimHei; color: #aaaaaa;}
+        #main #box3 .floatcont .yellow>div:last-child{float: right;  width: 60px; height: 46px; margin-top: 12px; margin-right: 15px; background-color: #e2cd46;}
+
+
+        #main .roundtitle{border-bottom: 1px solid #e7e8eb; border-radius: 4px 4px 0 0 4px 4px 0 0; padding-top: 15px; padding-left: 20px;  height: 24px; background-color: #f4f6f7; font:12px/1 SimHei; color: #aaaaaa;}
+
+        #main #box4 {margin-top: 13px; height: 356px; width: 100%;}
+        #main #box4 #box41{float: left; height: 356px; width: 532px;}
+        #main #box4 #box41 .tag{margin-top: 12px; margin-left: 22px; height: 30px; width: 100%;}
+        #main #box4 #box41 .tag>div{float: left;}
+        #main #box4 #box41 .tag .activetag{width: 89px; height: 100%; background: url(http://images.yyshhhh.com/ife/tag.png) no-repeat; background-position: 0 0;}
+        #main #box4 #box41 .tag .normaltag{width: 89px; height: 100%; background: url(http://images.yyshhhh.com/ife/tag.png) no-repeat; background-position: -88px 0;}
+        #main #box4 #box41 .tag .lastnormaltag{width: 140px; height: 100%; background: url(http://images.yyshhhh.com/ife/tag.png) no-repeat; background-position: -178px 0;}
+        #main #box4 #box41 .tablebox{margin-left: 23px; border-left: 1px solid #cbcbcb; border-right: 1px solid #cbcbcb; border-bottom: 1px solid #cbcbcb; border-radius: 0 0 5px 5px; box-shadow: -1px 0 #f4f4f4; padding-left: 36px; padding-top: 26px; height: 221px; width: 452px;}
+        #main #box4 #box41 .tablebox table{border-collapse: collapse;}
+        #main #box4 #box41 .tablebox td{ border: 1px solid #ddddde; padding: 2px 0 0 17px; width: 87px; height: 26px; font:12px/26px SimSun; color: #535353;}
+        #main #box4 #box41 .tablebox table .active{background-color: #f4f5f6;}
+
+        #main #box4 #box42{float: right; height: 356px; width: 350px;}
+        #main #box4 #box42 .content{position: relative; padding: 16px 35px 0 35px; width: 280px; height: 300px;}
+        #main #box4 #box42 .content .txtcontent{font: 12px/1 Mircrosotf Yahei; color: #c3c2c2;}
+        #main #box4 #box42 .content .txt{font: 12px/1 Mircrosotf Yahei; color: #535353;}
+
+        #main #box4 #box42 #box421{margin-left: 16px; }
+        #main #box4 #box42 #box421 .txtcontent{margin-bottom: 7px;}
+        #main #box4 #box42 #box421 .txt{margin-bottom: 10px;}
+        #main #box4 #box42 #box422{border-top: 1px solid #c3c2c2; border-bottom: 1px solid #c3c2c2; width: 100%; height: 43px;}
+
+        #main #box4 #box42 #box422>div{float: left;}
+        #main #box4 #box42 #box422>div:first-child, #main #box4 #box42 #box422>div:last-child{margin-left: 16px; margin-top: 4px;}
+        #main #box4 #box42 #box422 div .txt{margin-top: 9px;}
+        #main #box4 #box42 #box422 #seperator{height: 100%; width:1px; background-color: #c3c2c2; }
+        #main #box4 #box42 #box422>div:first-child{width: 94px;}
+
+        #main #box4 #box42 #box423{margin-left: 16px; height: 145px;}
+        #main #box4 #box42 #box423 .txtcontent{margin-top: 4px; margin-bottom: 7px;}
+
+
+        #main #box4 #box42 #box424{border-top: 1px solid #c3c2c2; padding-top: 11px;}
+        #main #box4 #box42 #box424 input{border:none; height: 13px; width: 13px; background-color: #c3c2c2;}
+        #main #box4 #box42 #box424 span{margin-left: 8px; padding: 0; font: 12px/1 Microsoft Yahei; color: #c3c2c2;}
+        #main #box4 #box42 button{position: absolute; bottom: 37px; right: 35px; border: 1px solid #388ac1; border-radius: 2px; width: 48px; height: 23px;  background-color: #388ac1; color: white; font-size: 12px; font-family: SimHei;}
+
+        #main #box5{margin-top: 8px; width: 100%; height: 357px;}
+        #main #box5 #box51{float: left; width: 350px; height: 355px;}
+        #main #box5 #box51 #box511{box-sizing: border-box; padding: 16px 22px 14px;  width: 100%; height: 41px;}
+        #main #box5 #box51 #box511 select{height: 22px; border: 1px solid #cececf; box-shadow: -1px -1px 1px #f0f0f0; font:12px/20px SimHei; color: #535353;}
+        #main #box5 #box51 #box511 #s1{width: 62px; margin-right: 6px;}
+        #main #box5 #box51 #box511 #s2{width: 83px; margin-right: 6px;}
+        #main #box5 #box51 #box511 #s3{width: 73px; margin-right: 6px;}
+        #main #box5 #box51 #box511 button{border: 1px solid #cececf; box-shadow: -1px -1px 1px #f0f0f0; height: 22px;  width: 62px; font:12px/20px SimHei; color: #535353; background-color: white;}
+
+        #main #box5 #box51 table{border-collapse: collapse; margin-left: 20px; margin-right: 20px; margin-top: 9px; width: 310px; font:12px/12px SimHei; color: #323333;}
+        #main #box5 #box51 thead td{border-top: 2px solid #a9cfec; border-bottom: 2px solid #e1e1e1; height: 29px; text-align: center;}
+        #main #box5 #box51 .red{color: #c9161d;}
+        #main #box5 #box51 tbody td{height: 45px; text-align: center;}
+        #main #box5 #box51 tbody td>div{margin: 2px; border: 1px solid white; box-sizing: border-box; padding-top: 7px; width:41px; height: 41px;}
+        #main #box5 #box51 tbody .active>div{margin: 2px; border: 1px solid #f5c62b; box-sizing: border-box; width:41px; padding-top: 7px; height: 41px;}
+
+        #main #box5 #box52{float: right; height: 100%; width: 520px;}
+        #main #box5 #box52 table{margin-top: 25px; margin-right: 40px; margin-left: 40px; border: 1px solid #cacbcb; border-collapse: collapse; box-sizing: border-box; width: 440px;  color: #231815;}
+        #main #box5 #box52 table th, #main #box5 #box52 table td{border: 1px solid #cacbcb;}
+        #main #box5 #box52 table th{box-sizing: border-box;  height: 21px; text-align: center; font:13px/21px SimHei;}
+        #main #box5 #box52 table #th1{width: 66px;}
+        #main #box5 #box52 table #th2{width: 90px;}
+        #main #box5 #box52 table #th3{width: 280px;}
+        #main #box5 #box52 table td{ height: 23px; font:12px/23px SimHei; text-align: center;}
+        #main #box5 #box52 table td:first-child{width: 66px;}
+        #main #box5 #box52 table td:last-child{position: relative; box-sizing: border-box; padding-left: 30px;  width: 280px; text-align: left;}
+        #main #box5 #box52 table td:last-child .line{position: absolute; top: 10px; right: 19px; width: 167px; height: 4px; background-color: #dcdcdc; }
+        #main #box5 #box52 table tr:nth-child(1) .line div:first-child{width:calc( (489 / 500) * 167px );  height: 100%; background-color: #ed6e52;}
+        #main #box5 #box52 table tr:nth-child(2) .line div:first-child{width:calc( (293 / 500) * 167px );  height: 100%; background-color: #ef8150;}
+        #main #box5 #box52 table tr:nth-child(3) .line div:first-child{width:calc( (231 / 500) * 167px );  height: 100%; background-color: #f19f4f;}
+        #main #box5 #box52 table tr:nth-child(4) .line div:first-child{width:calc( (228 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
+        #main #box5 #box52 table tr:nth-child(5) .line div:first-child{width:calc( (223 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
+        #main #box5 #box52 table tr:nth-child(6) .line div:first-child{width:calc( (214 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
+        #main #box5 #box52 table tr:nth-child(7) .line div:first-child{width:calc( (201 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
+        #main #box5 #box52 table tr:nth-child(8) .line div:first-child{width:calc( (192 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
+        #main #box5 #box52 table tr:nth-child(9) .line div:first-child{width:calc( (191 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
+        #main #box5 #box52 table tr:nth-child(10) .line div:first-child{width:calc( (185 / 500) * 167px );  height: 100%; background-color: #7fcbf0;}
