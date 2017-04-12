@@ -11,7 +11,7 @@
 
         #cont{width: 600px; height: 300px;}
 
-        #cont div{display: flex; flex-grow: 1; flex-wrap: wrap; align-items: stretch; margin: 10px; border: 1px solid black; box-sizing: content-box; min-height: 40px;}
+        #cont div{display: flex; flex-grow: 1; flex-wrap: wrap; align-items: stretch; margin: 10px; border: 1px solid black; box-sizing: content-box; min-height: 30px;}
 
 
 
@@ -26,6 +26,7 @@
 
 
     <script type="text/javascript">
+        var cont = document.getElementById('cont');
         var container = document.getElementById('big');
         var input = document.createElement('input');
         container.appendChild(input);
@@ -87,10 +88,28 @@
         }
 
         buttonSum.onclick = function(){
+            cont.innerHTML = '';
             var number = parseInt(input.value);
             createTree(number);
         };
 
+
+        //先序遍历
+        function preOrder(node){
+            node.express.style.backgroundColor = '#eeeeee';
+            alert(tree.indexOf(node));
+            node.express.style.backgroundColor = 'white';
+           // setTimeout(function(){
+           //     node.express.style.backgroundColor = 'white';
+           //     if (node.leftChild) preOrder(node.leftChild);
+           //     if (node.rightChild) preOrder(node.rightChild);
+          //  } ,1000);
+            if (node.leftChild) preOrder(node.leftChild);
+            if (node.rightChild) preOrder(node.rightChild);
+        }
+        buttonFirst.onclick = function(){
+           preOrder(tree[0]);
+        };
 
 
 
