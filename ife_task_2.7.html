@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <title>task 2.7</title>
     <style type="text/css">
-        div{display: flex; margin: 30px; flex:1 0 100px;}
+        #big{height: 40px;}
+
         input{margin-right: 10px;}
         button{margin-right: 30px;}
+
+        #cont{width: 600px; height: 300px;}
+
+        #cont div{display: flex; flex-grow: 1; flex-wrap: wrap; align-items: stretch; margin: 10px; border: 1px solid black; box-sizing: content-box; min-height: 40px;}
+
+
+
+
     </style>
 
 
 </head>
 <body>
+    <div id="big"></div>
     <div id="cont"></div>
 
 
     <script type="text/javascript">
-        var container = document.getElementById('cont');
+        var container = document.getElementById('big');
         var input = document.createElement('input');
         container.appendChild(input);
         var buttonSum = document.createElement('button');
-        buttonSum.innerHTML = '输入二叉树深度';
+        buttonSum.innerHTML = '输入二叉树深度，创建二叉树';
         container.appendChild(buttonSum);
         var buttonFirst = document.createElement('button');
         buttonFirst.innerHTML = '先序遍历';
@@ -32,10 +42,62 @@
         buttonLast.innerHTML = '后序遍历';
         container.appendChild(buttonLast);
 
+        var tree = [];
+
+        //节点
+        function Node() {
+            this.leftChild =  null;
+            this.rightChild = null;
+            this.express = document.createElement('div');
+        }
+
         //创建二叉树
         function createTree(num) {
-            creaasf
+            var j = Math.pow(2, num) - 1;
+            var l = Math.pow(2, num-1) - 1;
+            for ( var i = 0; i < j; i ++){
+                var node = new Node();
+                tree.push(node);
+            }
+            var root = tree[0];
+            cont.appendChild(root.express);
+            var leftIndex, rightIndex;
+            for ( var k = 0; k < l; k++ ){
+                leftIndex = 2*k + 1;
+                rightIndex = 2*k + 2;
+                tree[k].leftChild = tree[leftIndex];
+                tree[k].rightChild = tree[rightIndex];
+            }
+            build(tree[1]);
+            build(tree[2]);
+
         }
+
+        function build(node){
+            var  parentIndex;
+            if (tree.indexOf(node) == 1 || tree.indexOf(node) == 2) {
+                parentIndex = 0;
+            }
+            else{
+                 parentIndex = Math.round((tree.indexOf(node) - 2 )/2);
+            }
+            tree[parentIndex].express.appendChild(node.express);
+            if (node.leftChild) arguments.callee(node.leftChild);
+            if (node.rightChild) arguments.callee(node.rightChild);
+        }
+
+        buttonSum.onclick = function(){
+            var number = parseInt(input.value);
+            createTree(number);
+        };
+
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
