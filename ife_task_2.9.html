@@ -161,10 +161,15 @@
 
         cont.appendChild(troot.express);
 
-        for( var ii = 0; ii < tree.length; ii ++){
-            if ( tree[ii].firstChild) tree[ii].express.appendChild(tree[ii].firstChild.express);
-            if ( tree[ii].nextSibling) tree[ii].express.parentNode.appendChild(tree[ii].nextSibling.express);
+        function createTree(tree){
+            for( var ii = 0; ii < tree.length; ii ++){
+                if ( tree[ii].firstChild) tree[ii].express.appendChild(tree[ii].firstChild.express);
+                if ( tree[ii].nextSibling) tree[ii].express.parentNode.appendChild(tree[ii].nextSibling.express);
+            }
         }
+
+        createTree(tree);
+
 
 
   /*
@@ -179,9 +184,7 @@
         }
 
 */
-tree[3].express.onclick = function(){
-    this.style.backgroundColor = 'pink';
-}
+
 
         buttonSer.onclick = function(){
             var search = input.value;
@@ -196,7 +199,47 @@ tree[3].express.onclick = function(){
             if (!(iii)) alert('请输入正确的查询字符');
         };
 
+        buttonAdd.onclick = function(){
+            var addtext = input1.value;
+            for (var i = 0 ; i < tree.length; i ++){
+                if( tree[i].click){
+                    tree[length] = new Node(addtext);
+                    if ( tree[i].firstChild == null ){
+                        tree[i].firstChild = tree[length];
+                     }
+                    else {
+                        var leaf = tree[i].firstChild;
+                        while( leaf.nextSibling ){
+                            leaf = leaf.nextSibling;
+                        }
+                        leaf.nextSibling = tree[length];
+                    }
+                    break;
+                }
 
+            }
+
+            createTree(tree);
+        }
+
+        buttonDel.onclick = function(){
+            for (var i = 0 ; i < tree.length; i ++){
+                if( tree[i].click){
+                    postDel(tree[i]);
+                    break;
+                }
+            }
+
+            createTree(tree);
+        }
+
+        function postDel(node){
+            if (node){
+                if (node.firstChild) arguments.callee(node.firstChild);
+                if (node.nextSibling) arguments.callee(node.nextSibling);
+                node = null;
+            }
+        }
 
 
         var showTree = [];
@@ -252,7 +295,7 @@ tree[3].express.onclick = function(){
                 showTree.push(node.express);
             }
         }
-        buttonDel.onclick = function(){
+        buttonLast.onclick = function(){
            showTree.length = 0;
            postOrder(tree[0]);
            showtrees(showTree);
