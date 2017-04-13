@@ -11,7 +11,7 @@
 
         #cont{width: 600px; height: 300px;}
 
-        #cont div{display: flex; flex-grow: 1; flex-wrap: wrap; align-items: stretch; margin: 10px; border: 1px solid black; box-sizing: content-box; min-height: 30px;}
+        #cont div{display: flex; flex-grow: 1; flex-wrap: wrap; align-items: stretch; margin: 10px; border: 1px solid black; box-sizing: content-box; min-height: 30px; background-color: white;}
 
 
 
@@ -93,26 +93,64 @@
             createTree(number);
         };
 
+        var showTree = [];
+        //显示遍历的变化
+        function showtrees(tree){
+            if (tree instanceof Array){
+                for (var i = 0; i < tree.length; i ++){
+                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = '#eeeeee';}}(i), 3000*(i+1));
+                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = 'white';} }(i), 3000*(i+1)+1500);
+                }
+            }
+        }
+
 
         //先序遍历
         function preOrder(node){
-            node.express.style.backgroundColor = '#eeeeee';
-            alert(tree.indexOf(node));
-            node.express.style.backgroundColor = 'white';
+            showTree.push(node.express);
            // setTimeout(function(){
            //     node.express.style.backgroundColor = 'white';
            //     if (node.leftChild) preOrder(node.leftChild);
            //     if (node.rightChild) preOrder(node.rightChild);
-          //  } ,1000);
+          //  } ,1000);  遍历的时间顺序有问题
             if (node.leftChild) preOrder(node.leftChild);
             if (node.rightChild) preOrder(node.rightChild);
         }
         buttonFirst.onclick = function(){
+        showTree.length = 0;
            preOrder(tree[0]);
+           showtrees(showTree);
         };
 
+        //中序遍历
+        function inOrder(node){
 
+            if (node){
+                if (node.leftChild) arguments.callee(node.leftChild);
+                showTree.push(node.express);
+                if (node.rightChild) arguments.callee(node.rightChild);
+            }
+        }
+        buttonMiddle.onclick = function(){
+           showTree.length = 0;
+           inOrder(tree[0]);
+           showtrees(showTree);
+        };
 
+        //后序遍历
+        function postOrder(node){
+
+            if (node){
+                if (node.leftChild) arguments.callee(node.leftChild);
+                if (node.rightChild) arguments.callee(node.rightChild);
+                showTree.push(node.express);
+            }
+        }
+        buttonLast.onclick = function(){
+           showTree.length = 0;
+           postOrder(tree[0]);
+           showtrees(showTree);
+        };
 
 
 
