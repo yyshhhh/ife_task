@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task 2.7</title>
+    <style type="text/css">
+        #big{height: 40px;}
+
+        input{margin-right: 10px;}
+        button{margin-right: 30px;}
+
+        #cont{width: 600px; height: 300px;}
+
+        #cont div{display: flex; flex-grow: 1; flex-wrap: wrap; align-items: stretch; margin: 5px; border: 1px solid black; box-sizing: content-box; min-height: 20px; background-color: white;}
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <div id="big"></div>
+    <div id="cont"></div>
+
+
+    <script type="text/javascript">
+        var cont = document.getElementById('cont');
+        var container = document.getElementById('big');
+        var input = document.createElement('input');
+        container.appendChild(input);
+        var buttonSer = document.createElement('button');
+        buttonSer.innerHTML = '查询';
+        container.appendChild(buttonSer);
+        var buttonFirst = document.createElement('button');
+        buttonFirst.innerHTML = '先序遍历';
+        container.appendChild(buttonFirst);
+        var buttonMiddle = document.createElement('button');
+        buttonMiddle.innerHTML = '中序遍历';
+        container.appendChild(buttonMiddle);
+        var buttonLast = document.createElement('button');
+        buttonLast.innerHTML = '后序遍历';
+        container.appendChild(buttonLast);
+
+        var tree = [];
+
+
+        //节点
+        function Node(text) {
+            this.text = text;
+            this.firstChild =  null;
+            this.nextSibling = null;
+            this.express = document.createElement('div');
+            this.express.innerHTML = text;
+        }
+
+        //创建二叉树
+        var troot = new Node('super');
+        tree.push(troot);
+        var node1 = new Node('666');
+        tree.push(node1);
+        var node2 = new Node('Apple');
+        tree.push(node2);
+        var node3 = new Node('Pear');
+        tree.push(node3);
+        var node4 = new Node('Pig');
+        tree.push(node4);
+        var node5 = new Node('Cola');
+        tree.push(node5);
+        var node6 = new Node('Soccer');
+        tree.push(node6);
+        var node7 = new Node('Phone');
+        tree.push(node7);
+        var node8 = new Node('');
+        tree.push(node8);
+        var node9 = new Node('Book');
+        tree.push(node9);
+        var node10 = new Node('School');
+        tree.push(node10);
+        var node11 = new Node('Note');
+        tree.push(node11);
+        var node12 = new Node('Human');
+        tree.push(node12);
+        var node13 = new Node('Code');
+        tree.push(node13);
+        var node14 = new Node('Operate');
+        tree.push(node14);
+        var node15 = new Node('Man');
+        tree.push(node15);
+        var node16 = new Node('Program');
+        tree.push(node16);
+        var node17 = new Node('Moment');
+        tree.push(node17);
+        var node18 = new Node('Cat');
+        tree.push(node18);
+        var node19 = new Node('Grass');
+        tree.push(node19);
+        var node20 = new Node('Fish');
+        tree.push(node20);
+
+        troot.firstChild = node1;
+        node1.firstChild = node2;
+        node1.nextSibling = node11;
+        node2.firstChild = node3;
+        node2.nextSibling = node7;
+        node2.firstChild = node3;
+        node2.nextSibling = node7;
+        node3.nextSibling = node4;
+        node4.nextSibling = node5;
+        node5.nextSibling = node6;
+        node7.nextSibling = node8;
+        node8.firstChild = node9;
+        node9.nextSibling = node10;
+        node11.firstChild = node12;
+        node11.nextSibling = node20;
+        node12.firstChild = node13;
+        node12.nextSibling = node16;
+        node13.nextSibling = node14;
+        node14.nextSibling = node15;
+        node16.firstChild = node17;
+        node17.firstChild = node18;
+        node17.nextSibling = node19;
+
+        cont.appendChild(troot.express);
+
+        for( var ii = 0; ii < tree.length; ii ++){
+            if ( tree[ii].firstChild) tree[ii].express.appendChild(tree[ii].firstChild.express);
+            if ( tree[ii].nextSibling) tree[ii].express.parentNode.appendChild(tree[ii].nextSibling.express);
+        }
+
+
+        buttonSer.onclick = function(){
+            var search = input.value;
+            var iii = false;
+            for ( var i = 0; i < tree.length; i ++){
+                if( tree[i].text.toLowerCase() === search.toLowerCase()) {
+                    tree[i].express.style.backgroundColor = 'pink';
+                    iii = ture;
+                }
+            }
+            if (!(iii)) alert('请输入正确的查询字符');
+        };
+
+
+
+
+        var showTree = [];
+        //显示遍历的变化
+        function showtrees(tree){
+            if (tree instanceof Array){
+                for (var i = 0; i < tree.length; i ++){
+                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = '#eeeeee';}}(i), 3000*(i+1));
+                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = 'white';} }(i), 3000*(i+1)+1500);
+                }
+            }
+        }
+
+
+        //先序遍历
+        function preOrder(node){
+            showTree.push(node.express);
+           // setTimeout(function(){
+           //     node.express.style.backgroundColor = 'white';
+           //     if (node.leftChild) preOrder(node.leftChild);
+           //     if (node.rightChild) preOrder(node.rightChild);
+          //  } ,1000);  遍历的时间顺序有问题
+            if (node.firstChild) preOrder(node.firstChild);
+            if (node.nextSibling) preOrder(node.nextSibling);
+        }
+        buttonFirst.onclick = function(){
+        showTree.length = 0;
+           preOrder(tree[0]);
+           showtrees(showTree);
+        };
+
+        //中序遍历
+        function inOrder(node){
+
+            if (node){
+                if (node.firstChild) arguments.callee(node.firstChild);
+                showTree.push(node.express);
+                if (node.nextSibling) arguments.callee(node.nextSibling);
+            }
+        }
+        buttonMiddle.onclick = function(){
+           showTree.length = 0;
+           inOrder(tree[0]);
+           showtrees(showTree);
+        };
+
+        //后序遍历
+        function postOrder(node){
+
+            if (node){
+                if (node.firstChild) arguments.callee(node.firstChild);
+                if (node.nextSibling) arguments.callee(node.nextSibling);
+                showTree.push(node.express);
+            }
+        }
+        buttonLast.onclick = function(){
+           showTree.length = 0;
+           postOrder(tree[0]);
+           showtrees(showTree);
+        };
+
+
+
+
+    </script>
+</body>
+</html>
