@@ -1,0 +1,11 @@
+{
+  "name": "ife_task_3.8",
+  "version": "1.0.0",
+  "description": "node web spider",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yyshh",
+  "license": "ISC"
+}

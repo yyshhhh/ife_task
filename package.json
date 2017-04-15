@@ -1,0 +1,25 @@
+{
+  "name": "ife",
+  "version": "1.0.0",
+  "description": "ife",
+  "main": "jquery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyshhhh/ife_task.git"
+  },
+  "author": "yyshh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yyshhhh/ife_task/issues"
+  },
+  "homepage": "https://github.com/yyshhhh/ife_task#readme",
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1"
+  }
+}
