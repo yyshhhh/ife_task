@@ -8,7 +8,6 @@
 
         input{margin-right: 10px;}
         button{margin-right: 30px;}
-        #input1{margin-right: 30px;}
 
         #cont{width: 600px; height: 300px;}
 
@@ -43,53 +42,17 @@
         var buttonLast = document.createElement('button');
         buttonLast.innerHTML = '后序遍历';
         container.appendChild(buttonLast);
-        var input1 = document.createElement('input');
-        container.appendChild(input1);
-        var buttonAdd = document.createElement('button');
-        buttonAdd.innerHTML = '添加';
-        container.appendChild(buttonAdd);
-        var buttonDel = document.createElement('button');
-        buttonDel.innerHTML = '删除';
-        container.appendChild(buttonDel);
-
-
 
         var tree = [];
-
-        var colortest = 0;
-
-        //阻止事件冒泡
-        function stopPropagation(e) {
-            e = e || window.event;
-            if(e.stopPropagation) { //W3C阻止冒泡方法
-                e.stopPropagation();
-            } else {
-                e.cancelBubble = true; //IE阻止冒泡方法
-            }
-        }
-
 
 
         //节点
         function Node(text) {
             this.text = text;
-            this.click = false;
             this.firstChild =  null;
             this.nextSibling = null;
             this.express = document.createElement('div');
             this.express.innerHTML = text;
-            this.express.onclick = function(e){
-                if( colortest == 1){
-                    getElementsByTagName
-                }
-                stopPropagation(e);
-                this.express.style.backgroundColor = 'pink';
-                this.click = true;
-            }.bind(this)
-        }
-
-        Node.prototype = {
-            constructor: Node
         }
 
         //创建二叉树
@@ -167,30 +130,13 @@
         }
 
 
-  /*
-  循环闭包写法
-        for( var kk = 0; kk < tree.length; kk ++){
-            tree[kk].express.onclick = (function(k){
-                return function(){
-                    tree[k].express.style.backgroundColor = 'pink';
-                    tree[k].click = true;
-                };
-            })(kk);
-        }
-
-*/
-tree[3].express.onclick = function(){
-    this.style.backgroundColor = 'pink';
-}
-
         buttonSer.onclick = function(){
             var search = input.value;
             var iii = false;
             for ( var i = 0; i < tree.length; i ++){
                 if( tree[i].text.toLowerCase() === search.toLowerCase()) {
                     tree[i].express.style.backgroundColor = 'pink';
-                    iii = true;
-                    break;
+                    iii = ture;
                 }
             }
             if (!(iii)) alert('请输入正确的查询字符');
@@ -252,7 +198,7 @@ tree[3].express.onclick = function(){
                 showTree.push(node.express);
             }
         }
-        buttonDel.onclick = function(){
+        buttonLast.onclick = function(){
            showTree.length = 0;
            postOrder(tree[0]);
            showtrees(showTree);
