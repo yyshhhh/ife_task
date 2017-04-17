@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>color picker</title>
+    <style type="text/css">
+
+        #cont{}
+
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+
+    <div id="cont"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" version="1.1">
+        <defs>
+            <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#ff0000" stop-opacity="1"></stop>
+                <stop offset="8%" stop-color="#ff7f00" stop-opacity="1"></stop>
+                <stop offset="17%" stop-color="#ffff00" stop-opacity="1"></stop>
+                <stop offset="25%" stop-color="#80ff00" stop-opacity="1"></stop>
+                <stop offset="33%" stop-color="#00ff00" stop-opacity="1"></stop>
+                <stop offset="42%" stop-color="#00ff80" stop-opacity="1"></stop>
+                <stop offset="50%" stop-color="#00ffff" stop-opacity="1"></stop>
+                <stop offset="58%" stop-color="#0080ff" stop-opacity="1"></stop>
+                <stop offset="67%" stop-color="#0000ff" stop-opacity="1"></stop>
+                <stop offset="75%" stop-color="#8000ff" stop-opacity="1"></stop>
+                <stop offset="83%" stop-color="#ff00ff" stop-opacity="1"></stop>
+                <stop offset="92%" stop-color="#ff007f" stop-opacity="1"></stop>
+                <stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>
+            </linearGradient>
+        </defs>
+        <rect width="30px" height="300px" fill="url(#gradient-hsv)">
+    </svg>
+
+    <script type="text/javascript">
+        var cont = document.getElementById('cont');
+
+        function colorPicker(){
+            //判断是svg还是vml还是svgAngle
+            var type = window.SVGAngle || documentimplementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML",
+                picker, slide, hueOffset = 15, svgNS = 'http://www.w3.org/2000/svg';
+            var colorpickerHTMLSnippet = [
+
+                '<div class="picker-wrapper">',
+                        '<div class="picker"></div>',
+                        '<div class="picker-indicator"></div>',
+                '</div>',
+                '<div class="slide-wrapper">',
+                        '<div class="slide"></div>',
+                        '<div class="slide-indicator"></div>',
+                '</div>'
+
+            ].join('');
+
+            function mousePosition(evt) {
+                // IE:
+                if (window.event && window.event.contentOverflow !== undefined) {
+                    return { x: window.event.offsetX, y: window.event.offsetY };
+                }
+                // Webkit:
+                if (evt.offsetX !== undefined && evt.offsetY !== undefined) {
+                    return { x: evt.offsetX, y: evt.offsetY };
+                }
+                // Firefox:
+                var wrapper = evt.target.parentNode.parentNode;
+                return { x: evt.layerX - wrapper.offsetLeft, y: evt.layerY - wrapper.offsetTop };
+            }
+
+
+
+
+
+
+        }
+
+
+    </script>
+</body>
+</html>
