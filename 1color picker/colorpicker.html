@@ -65,14 +65,14 @@
             </svg>
         </div>
 
-        <div id="color">
-            <label><span>H</span><input type="" name=""> 度</label>
-            <label><span>S</span><input type="" name=""> %</label>
-            <label><span>B</span><input type="" name=""> %</label>
-            <label><span>R</span><input type="" name=""></label>
-            <label><span>G</span><input type="" name=""></label>
-            <label><span>B</span><input type="" name=""></label>
-            <label><span>#</span><input type="" name=""></label>
+        <div id="numbers">
+            <label><span>H</span><input type="" name="" id="h"> 度</label>
+            <label><span>S</span><input type="" name="" id="s"> %</label>
+            <label><span>B</span><input type="" name="" id="v"> %</label>
+            <label><span>R</span><input type="" name="" id="r"></label>
+            <label><span>G</span><input type="" name="" id="g"></label>
+            <label><span>B</span><input type="" name="" id="b"></label>
+            <label><span>#</span><input type="" name="" id="hex"></label>
         </div>
 
     </div>
@@ -108,28 +108,31 @@
                 }
             }
 
-            //hsv到rbg的转化
-            function hsv2rgb(hsv){
+            //从hsv得到rbg的值
+            function hsv2rgb(color){
                 var R,G,B,h,f,p,q,t,r,g,b;
-                h = (hsv.h / 60) % 6;
-                f = hsv.h / 60 - h;
-                p = hsv.v * (1 - hsv.s);
-                q = hsv.v * (1- f * hsv.s);
-                t = hsv.v * (1- (1 - f) * hsv.s);
+                h = (color.h / 60) % 6;
+                f = color.h / 60 - h;
+                p = color.v * (1 - color.s);
+                q = color.v * (1- f * color.s);
+                t = color.v * (1- (1 - f) * color.s);
                 R = [v, q, p, p, t, v][h];
                 G = [t, v, v, q, p, p][h];
                 B = [p, p, t, v, v, q][h];
                 r = Math.round( R * 255 );
                 g = Math.round( G * 255 );
                 b = Math.round( B * 255 );
-                return {r: r, g: g, b: b, hex: Number( parseInt(r, 16).toString + parsrInt(g, 16).toString + parseInt(b, 16).toString )};
+                color.r = r;
+                color.g = g;
+                color.b = b;
+                color.hex = Number( parseInt(r, 16).toString + parsrInt(g, 16).toString + parseInt(b, 16).toString );
             }
 
-            //rgb到hsv的转化
-            function rgb2hsv(rgb){
-                var r = rgb.r / 255,
-                    b = rgb.b / 255,
-                    g = rgb.g / 255;
+            //从rgb得到hsv的值
+            function rgb2hsv(color){
+                var r = color.r / 255,
+                    b = color.b / 255,
+                    g = color.g / 255;
                 var h, s, v, H, S ,V;
                 v = Math.max(r, g, b);
                 min = Math.min(r, g, b);
@@ -149,21 +152,16 @@
                 H = parseInt(h * 100);
                 S = parseInt(s * 100);
                 V = parseInt(v * 100);
-                return {h: H, s: S, v: V};
+                color.h = H;
+                color.s = S;
+                color.v = V;
+                color.hex = Number( parseInt(color.r, 16).toString + parsrInt(color.g, 16).toString + parseInt(color.b, 16).toString );
 
 
             }
 
             //跨浏览器事件处理
             var EventUtil = {
-
-                getEvent: function(event){
-                    return event ? event : window.event;
-                },
-
-                getTarget: function(event){
-                    return event.target || event.srcElement;
-                },
 
                 addHandler: function(element, type, handler){
                     if (element.addEventListener){
@@ -185,6 +183,38 @@
                 }
 
             };
+
+            //根据slide得到色相，并且反应到colorpicker上
+            function slideListener(color, slideElement, pickerElement){
+                return function(evt){
+                    evt = evt || window.event;
+                    var mouse = mousePosition(evt);
+                    color.h = mouse.y / slideElement.offsetHeight * 360;
+                    var pickerColor = hsv2rgb({h: color.h, s: 1, v: 1});
+                    pickerElement.style.backgroundColor = pickerColor.hex;
+                };
+            }
+
+            //根据picker的鼠标位置取到颜色值
+            function pickListener(color, pickerElement){
+                return funtion(evt){
+                    evt = evt || window.event;
+                    var mouse = mousePosition(evt),
+                        width = pickerElement.offsetWidth,
+                        height = pickerElement.offsetHeight;
+                    color.s = mouse.x / width;
+                    color.v = (height - mouse.y) / height;
+                    var c = hsv2rgb(color);
+                    getElementById('h').value = color.h;
+                    getElementById('s').value = color.s;
+                    getElementById('v').value = color.v;
+                    getElementById('r').value = color.r;
+                    getElementById('g').value = color.g;
+                    getElementById('b').value = color.b;
+                    getElementById('hex').value = color.hex;
+
+                };
+            }
 
 
 
