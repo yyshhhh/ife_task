@@ -5,7 +5,13 @@
     <title>color picker</title>
     <style type="text/css">
 
-        #cont{}
+        #cont{position: relative; background-color: #737373; height: 320px; width:500px;}
+        #cont #picker{position: absolute; left: 10px; top:10px; width:300px; height: 300px; background-color: #ff0000;}
+        #cont #slider{position: absolute; left: 330px; top:10px;}
+        #cont #color{position: absolute; left: 380px; bottom: 10px; color: white; font-family: Microsoft Yahei;}
+        #cont #color label{display: block; margin-bottom: 8px; height: 20px;}
+        #cont #color label span{display: inline-block; width: 20px;}
+        #cont #color label input{ width: 40px;}
 
 
 
@@ -17,27 +23,59 @@
 </head>
 <body>
 
-    <div id="cont"></div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" version="1.1">
-        <defs>
-            <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#ff0000" stop-opacity="1"></stop>
-                <stop offset="8%" stop-color="#ff7f00" stop-opacity="1"></stop>
-                <stop offset="17%" stop-color="#ffff00" stop-opacity="1"></stop>
-                <stop offset="25%" stop-color="#80ff00" stop-opacity="1"></stop>
-                <stop offset="33%" stop-color="#00ff00" stop-opacity="1"></stop>
-                <stop offset="42%" stop-color="#00ff80" stop-opacity="1"></stop>
-                <stop offset="50%" stop-color="#00ffff" stop-opacity="1"></stop>
-                <stop offset="58%" stop-color="#0080ff" stop-opacity="1"></stop>
-                <stop offset="67%" stop-color="#0000ff" stop-opacity="1"></stop>
-                <stop offset="75%" stop-color="#8000ff" stop-opacity="1"></stop>
-                <stop offset="83%" stop-color="#ff00ff" stop-opacity="1"></stop>
-                <stop offset="92%" stop-color="#ff007f" stop-opacity="1"></stop>
-                <stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>
-            </linearGradient>
-        </defs>
-        <rect width="30px" height="300px" fill="url(#gradient-hsv)">
-    </svg>
+    <div id="cont">
+
+        <div id="picker">
+            <svg  xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" version="1.1">
+                <defs>
+                    <linearGradient id="gradient-black" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#000000" stop-opacity="1"></stop>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+                    </linearGradient>
+                    <linearGradient id="gradient-white" x1="0%" y1="100%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"></stop>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+                    </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-white)"></rect>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>
+            </svg>
+        </div>
+
+        <div id="slider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="300px" version="1.1">
+                <defs>
+                    <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#ff0000" stop-opacity="1"></stop>
+                        <stop offset="8%" stop-color="#ff7f00" stop-opacity="1"></stop>
+                        <stop offset="17%" stop-color="#ffff00" stop-opacity="1"></stop>
+                        <stop offset="25%" stop-color="#80ff00" stop-opacity="1"></stop>
+                        <stop offset="33%" stop-color="#00ff00" stop-opacity="1"></stop>
+                        <stop offset="42%" stop-color="#00ff80" stop-opacity="1"></stop>
+                        <stop offset="50%" stop-color="#00ffff" stop-opacity="1"></stop>
+                        <stop offset="58%" stop-color="#0080ff" stop-opacity="1"></stop>
+                        <stop offset="67%" stop-color="#0000ff" stop-opacity="1"></stop>
+                        <stop offset="75%" stop-color="#8000ff" stop-opacity="1"></stop>
+                        <stop offset="83%" stop-color="#ff00ff" stop-opacity="1"></stop>
+                        <stop offset="92%" stop-color="#ff007f" stop-opacity="1"></stop>
+                        <stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>
+                    </linearGradient>
+                </defs>
+                <rect width="30px" height="300px" fill="url(#gradient-hsv)">
+            </svg>
+        </div>
+
+        <div id="color">
+            <label><span>H</span><input type="" name=""> 度</label>
+            <label><span>S</span><input type="" name=""> %</label>
+            <label><span>B</span><input type="" name=""> %</label>
+            <label><span>R</span><input type="" name=""></label>
+            <label><span>G</span><input type="" name=""></label>
+            <label><span>B</span><input type="" name=""></label>
+            <label><span>#</span><input type="" name=""></label>
+        </div>
+
+    </div>
 
     <script type="text/javascript">
         var cont = document.getElementById('cont');
@@ -68,10 +106,86 @@
                 if (evt.offsetX !== undefined && evt.offsetY !== undefined) {
                     return { x: evt.offsetX, y: evt.offsetY };
                 }
-                // Firefox:
-                var wrapper = evt.target.parentNode.parentNode;
-                return { x: evt.layerX - wrapper.offsetLeft, y: evt.layerY - wrapper.offsetTop };
             }
+
+            //hsv到rbg的转化
+            function hsv2rgb(hsv){
+                var R,G,B,h,f,p,q,t,r,g,b;
+                h = (hsv.h / 60) % 6;
+                f = hsv.h / 60 - h;
+                p = hsv.v * (1 - hsv.s);
+                q = hsv.v * (1- f * hsv.s);
+                t = hsv.v * (1- (1 - f) * hsv.s);
+                R = [v, q, p, p, t, v][h];
+                G = [t, v, v, q, p, p][h];
+                B = [p, p, t, v, v, q][h];
+                r = Math.round( R * 255 );
+                g = Math.round( G * 255 );
+                b = Math.round( B * 255 );
+                return {r: r, g: g, b: b, hex: Number( parseInt(r, 16).toString + parsrInt(g, 16).toString + parseInt(b, 16).toString )};
+            }
+
+            //rgb到hsv的转化
+            function rgb2hsv(rgb){
+                var r = rgb.r / 255,
+                    b = rgb.b / 255,
+                    g = rgb.g / 255;
+                var h, s, v, H, S ,V;
+                v = Math.max(r, g, b);
+                min = Math.min(r, g, b);
+                s =  v == 0 ? 0 : (v - min) / v;
+                if ( v == r && g >= b ){
+                    h = 60 * ( g - b ) / ( v - min);
+                }
+                else if ( v == r && g < b ){
+                    h = 60 * ( g - b ) / ( v - min) + 360;
+                }
+                else if ( v == g ){
+                    h = 60 * ( b - r ) / ( v - min) + 120;
+                }
+                else if ( v == b ){
+                    h = 60 * ( r - g ) / ( v - min) + 240;
+                }
+                H = parseInt(h * 100);
+                S = parseInt(s * 100);
+                V = parseInt(v * 100);
+                return {h: H, s: S, v: V};
+
+
+            }
+
+            //跨浏览器事件处理
+            var EventUtil = {
+
+                getEvent: function(event){
+                    return event ? event : window.event;
+                },
+
+                getTarget: function(event){
+                    return event.target || event.srcElement;
+                },
+
+                addHandler: function(element, type, handler){
+                    if (element.addEventListener){
+                        element.addEventListener(type, handler, false);
+                    } else if (element.attachEvent){
+                        element.attachEvent("on" + type, handler);
+                    } else {
+                        element["on" + type] = handler;
+                    }
+                },
+                removeHandler: function(element, type, handler){
+                    if (element.removeEventListener){
+                        element.removeEventListener(type, handler, false);
+                    } else if (element.detachEvent){
+                        element.detachEvent("on" + type, handler);
+                    } else {
+                        element["on" + type] = null;
+                    }
+                }
+
+            };
+
 
 
 
