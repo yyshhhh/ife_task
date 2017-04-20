@@ -5,13 +5,16 @@
     <title>color picker</title>
     <style type="text/css">
 
-        #cont{position: relative; background-color: #737373; height: 320px; width:500px;}
-        #cont #picker{position: absolute; left: 10px; top:10px; width:300px; height: 300px; background-color: #ff0000;}
-        #cont #slider{position: absolute; left: 330px; top:10px;}
-        #cont #color{position: absolute; left: 380px; bottom: 10px; color: white; font-family: Microsoft Yahei;}
-        #cont #color label{display: block; margin-bottom: 8px; height: 20px;}
-        #cont #color label span{display: inline-block; width: 20px;}
-        #cont #color label input{ width: 40px;}
+        #cont{background-color: #737373; padding: 10px; height: 300px; width:480px;}
+        #cont #pickers{position: relative; display: inline-block; width:300px; height: 300px; }
+        #cont #pickers #picker{width: 300px; height: 300px; background-color: #ff0000;}
+        #cont #pickers #picker-indicator{position: absolute; left: 294px; top: -6px; border: 2px solid black; border-radius: 5px; width: 8px; height: 8px; background-color: white; opacity: 0.5;}
+        #cont #sliders{position: relative; display: inline-block; margin-left: 20px;  width:30px; height: 300px;}
+        #cont #sliders #slider-indicator{position: absolute; left: -4px; top: -7px; border: 2px solid black; border-radius: 2px; width: 34px; height: 10px; background-color: white; opacity: 0.5;}
+        #cont #numbers{ display: inline-block; vertical-align: bottom; margin-left: 10px;  color: white; font-family: Microsoft Yahei;}
+        #cont #numbers label{display: block; margin-bottom: 8px; height: 20px;}
+        #cont #numbers label span{display: inline-block; width: 20px;}
+        #cont #numbers label input{ width: 50px;}
 
 
 
@@ -25,6 +28,7 @@
 
     <div id="cont">
 
+    <div id="pickers">
         <div id="picker">
             <svg  xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" version="1.1">
                 <defs>
@@ -41,7 +45,10 @@
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>
             </svg>
         </div>
+        <div id="picker-indicator"></div>
+    </div>
 
+    <div id="sliders">
         <div id="slider">
             <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="300px" version="1.1">
                 <defs>
@@ -61,26 +68,44 @@
                         <stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>
                     </linearGradient>
                 </defs>
-                <rect width="30px" height="300px" fill="url(#gradient-hsv)">
+                <rect width="30px" height="300px" fill="url(#gradient-hsv)"></rect>
             </svg>
         </div>
+        <div id="slider-indicator"></div>
+    </div>
 
-        <div id="numbers">
-            <label><span>H</span><input type="" name="" id="h"> 度</label>
-            <label><span>S</span><input type="" name="" id="s"> %</label>
-            <label><span>B</span><input type="" name="" id="v"> %</label>
-            <label><span>R</span><input type="" name="" id="r"></label>
-            <label><span>G</span><input type="" name="" id="g"></label>
-            <label><span>B</span><input type="" name="" id="b"></label>
-            <label><span>#</span><input type="" name="" id="hex"></label>
-        </div>
+    <div id="numbers">
+        <label><span>H</span><input type="" name="" id="h"> 度</label>
+        <label><span>S</span><input type="" name="" id="s"> %</label>
+        <label><span>B</span><input type="" name="" id="v"> %</label>
+        <label><span>R</span><input type="" name="" id="r"></label>
+        <label><span>G</span><input type="" name="" id="g"></label>
+        <label><span>B</span><input type="" name="" id="b"></label>
+        <label><span>#</span><input type="" name="" id="hex"></label>
+    </div>
 
     </div>
 
     <script type="text/javascript">
         var cont = document.getElementById('cont');
 
+
+
         function colorPicker(){
+
+            var picker = document.getElementById('picker');
+            var silder = document.getElementById('slider');
+            var pickers = document.getElementById('pickers');
+            var silders = document.getElementById('sliders');
+            var sliderIndicator = document.getElementById('slider-indicator');
+            var pickerIndicator = document.getElementById('picker-indicator');
+            var color = {h: 56, s:1, v:1};
+
+
+            hsv2rgb(color);
+            showColor(color);
+
+
             //判断是svg还是vml还是svgAngle
             var type = window.SVGAngle || documentimplementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML",
                 picker, slide, hueOffset = 15, svgNS = 'http://www.w3.org/2000/svg';
@@ -110,8 +135,9 @@
 
             //从hsv得到rbg的值
             function hsv2rgb(color){
-                var R,G,B,h,f,p,q,t,r,g,b;
-                h = (color.h / 60) % 6;
+                var R,G,B,h,f,p,q,t,r,g,b,v;
+                v = color.v;
+                h = Math.floor(color.h / 60) % 6;
                 f = color.h / 60 - h;
                 p = color.v * (1 - color.s);
                 q = color.v * (1- f * color.s);
@@ -125,7 +151,24 @@
                 color.r = r;
                 color.g = g;
                 color.b = b;
-                color.hex = Number( parseInt(r, 16).toString + parsrInt(g, 16).toString + parseInt(b, 16).toString );
+                var r16, g16, b16;
+                if (r > 15)
+                    {r16 = r.toString(16);}
+                else{
+                    r16 = '0' + r.toString(16);
+                }
+                if (g > 15)
+                    {g16 = g.toString(16);}
+                else{
+                    g16 = '0' + g.toString(16);
+                }
+                if (b > 15)
+                    {b16 = b.toString(16);}
+                else{
+                    b16 = '0' + b.toString(16);
+                }
+
+                color.hex = r16 + g16 + b16;
             }
 
             //从rgb得到hsv的值
@@ -155,7 +198,24 @@
                 color.h = H;
                 color.s = S;
                 color.v = V;
-                color.hex = Number( parseInt(color.r, 16).toString + parsrInt(color.g, 16).toString + parseInt(color.b, 16).toString );
+                var r16, g16, b16;
+                if (color.r > 15)
+                    {r16 = color.r.toString(16);}
+                else{
+                    r16 = '0' + color.r.toString(16);
+                }
+                if (color.g > 15)
+                    {g16 = color.g.toString(16);}
+                else{
+                    g16 = '0' + color.g.toString(16);
+                }
+                if (color.b > 15)
+                    {b16 = color.b.toString(16);}
+                else{
+                    b16 = '0' + color.b.toString(16);
+                }
+
+                color.hex = r16 + g16 + b16;
 
 
             }
@@ -185,44 +245,77 @@
             };
 
             //根据slide得到色相，并且反应到colorpicker上
-            function slideListener(color, slideElement, pickerElement){
+            function sliderListener(color){
                 return function(evt){
                     evt = evt || window.event;
                     var mouse = mousePosition(evt);
-                    color.h = mouse.y / slideElement.offsetHeight * 360;
-                    var pickerColor = hsv2rgb({h: color.h, s: 1, v: 1});
-                    pickerElement.style.backgroundColor = pickerColor.hex;
+                    color.h = ( 1 - mouse.y / sliders.offsetHeight ) * 360;
+                    hsv2rgb(color);
+                    showColor(color);
+                    var colorBac = color;
+                    colorBac.s = 1;
+                    colorBac.v = 1;
+                    hsv2rgb(colorBac);
+                    picker.style.backgroundColor = '#' + colorBac.hex;
+                    sliderIndicator.top = mouse.y - 7 + 'px';
                 };
             }
 
             //根据picker的鼠标位置取到颜色值
-            function pickListener(color, pickerElement){
-                return funtion(evt){
+            function pickerListener(color){
+                return function(evt){
                     evt = evt || window.event;
                     var mouse = mousePosition(evt),
-                        width = pickerElement.offsetWidth,
-                        height = pickerElement.offsetHeight;
+                        width = pickers.offsetWidth,
+                        height = pickers.offsetHeight;
                     color.s = mouse.x / width;
                     color.v = (height - mouse.y) / height;
-                    var c = hsv2rgb(color);
-                    getElementById('h').value = color.h;
-                    getElementById('s').value = color.s;
-                    getElementById('v').value = color.v;
-                    getElementById('r').value = color.r;
-                    getElementById('g').value = color.g;
-                    getElementById('b').value = color.b;
-                    getElementById('hex').value = color.hex;
+                    hsv2rgb(color);
+                    showColor(color);
+
+
 
                 };
             }
 
+            //显示颜色值
+            function showColor(color){
+                document.getElementById('h').value = parseInt(color.h);
+                document.getElementById('s').value = parseInt(color.s * 100);
+                document.getElementById('v').value = parseInt(color.v * 100);
+                document.getElementById('r').value = color.r;
+                document.getElementById('g').value = color.g;
+                document.getElementById('b').value = color.b;
+                document.getElementById('hex').value = color.hex;
+            }
 
+            //拖动鼠标的事件处理
+            function dragging(color, element, listener){
+                var mousedown = false;
 
+                EventUtil.addHandler(element, 'mousedown', function(evt){
+                    evt = evt || window.event;
+                    mousedown = true; })
+                EventUtil.addHandler(element, 'mouseup', function(evt){
+                    evt = evt || window.event;
+                    mousedown = false; })
+                EventUtil.addHandler(element, 'mouseout', function(evt){
+                    evt = evt || window.event;
+                    mousedown = false; })
+                EventUtil.addHandler(element, 'mousemove', function(evt){
+                    evt = evt || window.event;
+                    if (mousedown){
+                        listener(evt);
+                    }
+                })
+            }
 
-
-
+            dragging(color, sliders, sliderListener(color));
+            dragging(color, pickers, pickerListener(color));
 
         }
+
+        colorPicker();
 
 
     </script>
