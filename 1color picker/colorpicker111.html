@@ -8,7 +8,7 @@
         #cont{background-color: #737373; padding: 10px; height: 300px; width:480px;}
         #cont #pickers{position: relative; display: inline-block; width:300px; height: 300px; }
         #cont #pickers #picker{width: 300px; height: 300px; background-color: #ff0000;}
-        #cont #pickers #picker-indicator{position: absolute; left: 294px; top: -6px; border: 2px solid black; border-radius: 5px; width: 8px; height: 8px; background-color: white; opacity: 0.5;  pointer-events: none;}
+        #cont #pickers #picker-indicator{position: absolute; left: 294px; top: -6px; border: 2px solid black; border-radius: 5px; width: 8px; height: 8px; background-color: white; opacity: 0.5;}
         #cont #sliders{position: relative; display: inline-block; margin-left: 20px;  width:30px; height: 300px;}
         #cont #sliders #slider-indicator{position: absolute; left: -4px; top: -7px; border: 2px solid black; border-radius: 2px; width: 34px; height: 10px; background-color: white; opacity: 0.5; pointer-events: none;}
         #cont #numbers{ display: inline-block; vertical-align: bottom; margin-left: 10px;  color: white; font-family: Microsoft Yahei;}
@@ -105,16 +105,24 @@
             hsv2rgb(color);
             showColor(color);
 
-            function mousePosition(evt) {
-                // IE:
-                if (window.event && window.event.contentOverflow !== undefined) {
-                    return { x: window.event.offsetX, y: window.event.offsetY };
-                }
-                // Webkit:
-                if (evt.offsetX !== undefined && evt.offsetY !== undefined) {
-                    return { x: evt.offsetX, y: evt.offsetY };
-                }
-            }
+
+            //判断是svg还是vml还是svgAngle
+            var type = window.SVGAngle || documentimplementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML",
+                picker, slide, hueOffset = 15, svgNS = 'http://www.w3.org/2000/svg';
+            var colorpickerHTMLSnippet = [
+
+                '<div class="picker-wrapper">',
+                        '<div class="picker"></div>',
+                        '<div class="picker-indicator"></div>',
+                '</div>',
+                '<div class="slide-wrapper">',
+                        '<div class="slide"></div>',
+                        '<div class="slide-indicator"></div>',
+                '</div>'
+
+            ].join('');
+
+
 
             //从hsv得到rbg的值
             function hsv2rgb(color){
@@ -227,10 +235,16 @@
 
             };
 
+            function mousePosition(evt) {
+
+                return { x: evt.offsetX, y: evt.offsetY
+                };
+
+            }
+
             //根据slide得到色相，并且反应到colorpicker上
-            function sliderListener(color){
+            function sliderListener(evt,color){
                 return function(evt){
-                    evt = evt || window.event;
                     var mouse = mousePosition(evt);
                     color.h = ( 1 - mouse.y / sliders.offsetHeight ) * 360;
                     hsv2rgb(color);
@@ -240,7 +254,7 @@
                     colorBac.v = 1;
                     hsv2rgb(colorBac);
                     picker.style.backgroundColor = '#' + colorBac.hex;
-                    sliderIndicator.style.top = (mouse.y - sliderIndicator.offsetHeight / 2) + 'px';
+                    sliderIndicator.style.top = (mouse.y - 7) + 'px';
                 };
             }
 
@@ -255,11 +269,6 @@
                     color.v = (height - mouse.y) / height;
                     hsv2rgb(color);
                     showColor(color);
-                    pickerIndicator.style.top = (mouse.y - pickerIndicator.offsetHeight / 2) + 'px';
-                    pickerIndicator.style.left = (mouse.x - pickerIndicator.offsetWidth / 2) + 'px';
-
-
-
                 };
             }
 
@@ -280,10 +289,7 @@
 
                 EventUtil.addHandler(element, 'mousedown', function(evt){
                     evt = evt || window.event;
-                    mousedown = true;
-                    if (mousedown){
-                        listener(evt);
-                    } })
+                    mousedown = true; })
                 EventUtil.addHandler(element, 'mouseup', function(evt){
                     evt = evt || window.event;
                     mousedown = false; })
@@ -298,28 +304,9 @@
                 })
             }
 
-            //输入颜色值颜色改变
-            function num2col(part, inputElement){
-                return function(evt){
-                    color.part = inputElement.value;
-                    if ([h,s,v].indexOf(part) !== -1){
-                        if(inputElement.value> 100) {
-                            alert
-                        }
-                        hsv2rgb(color);
-                        showColor(color);
-                    }
-                    else{
-                        rgb2hsv(color);
-                        showColor(color);
-                    }
-                }
-            }
-
-            dragging(color, sliders, sliderListener(color));
+            dragging(color, sliders, sliderListener(color
+                ));
             dragging(color, pickers, pickerListener(color));
-
-            EventUtil.addHandler(document.getElementById('h'), 'change', num2col(h, document.getElementById('h')));
 
         }
 
