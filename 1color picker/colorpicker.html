@@ -15,7 +15,8 @@
         #cont #numbers{ display: inline-block; vertical-align: bottom; margin-left: 10px;  color: white; font-family: Microsoft Yahei;}
         #cont #numbers label{display: block; margin-bottom: 8px; height: 20px;}
         #cont #numbers label span{display: inline-block; width: 20px;}
-        #cont #numbers label input{ width: 50px;}
+        #cont #numbers label input{ box-sizing: border-box; width: 50px; height:22px;}
+        #cont #numbers #copyText{ margin-left: 6px; border:1px solid #333333; border-radius: 2px; padding-left:4px; width: 40px; height: 22px; background-color: #eeeeee;  vertical-align: bottom; font: 12px/1 Mircrosoft Yahei;}
         #cont #currentColor{position: absolute; top:10px; right:40px; width: 50px; height: 50px; background-color: white;}
 
 
@@ -30,72 +31,80 @@
 
     <div id="cont">
 
-    <div id="pickers">
-        <div id="picker">
-            <svg  xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" version="1.1">
-                <defs>
-                    <linearGradient id="gradient-black" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stop-color="#000000" stop-opacity="1"></stop>
-                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
-                    </linearGradient>
-                    <linearGradient id="gradient-white" x1="0%" y1="100%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"></stop>
-                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
-                    </linearGradient>
-                </defs>
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-white)"></rect>
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>
-            </svg>
-        </div>
-        <div id="picker-indicator"></div>
-    </div>
 
-    <div id="sliders">
-        <div id="slider">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="300px" version="1.1">
-                <defs>
-                    <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stop-color="#ff0000" stop-opacity="1"></stop>
-                        <stop offset="8%" stop-color="#ff7f00" stop-opacity="1"></stop>
-                        <stop offset="17%" stop-color="#ffff00" stop-opacity="1"></stop>
-                        <stop offset="25%" stop-color="#80ff00" stop-opacity="1"></stop>
-                        <stop offset="33%" stop-color="#00ff00" stop-opacity="1"></stop>
-                        <stop offset="42%" stop-color="#00ff80" stop-opacity="1"></stop>
-                        <stop offset="50%" stop-color="#00ffff" stop-opacity="1"></stop>
-                        <stop offset="58%" stop-color="#0080ff" stop-opacity="1"></stop>
-                        <stop offset="67%" stop-color="#0000ff" stop-opacity="1"></stop>
-                        <stop offset="75%" stop-color="#8000ff" stop-opacity="1"></stop>
-                        <stop offset="83%" stop-color="#ff00ff" stop-opacity="1"></stop>
-                        <stop offset="92%" stop-color="#ff007f" stop-opacity="1"></stop>
-                        <stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>
-                    </linearGradient>
-                </defs>
-                <rect width="30px" height="300px" fill="url(#gradient-hsv)"></rect>
-            </svg>
-        </div>
-        <div id="slider-indicator"></div>
-    </div>
-
-    <div id="numbers">
-        <label><span>H</span><input type="" name="" id="h"> 度</label>
-        <label><span>S</span><input type="" name="" id="s"> %</label>
-        <label><span>B</span><input type="" name="" id="v"> %</label>
-        <label><span>R</span><input type="" name="" id="r"></label>
-        <label><span>G</span><input type="" name="" id="g"></label>
-        <label><span>B</span><input type="" name="" id="b"></label>
-        <label><span>#</span><input type="" name="" id="hex"></label>
-    </div>
-
-    <div id="currentColor"></div>
-
-    </div>
 
     <script type="text/javascript">
         var cont = document.getElementById('cont');
 
 
 
+
+
         function colorPicker(){
+            var colorPickerHTML = [
+                '<div id="pickers">',
+                    '<div id="picker">',
+                        '<svg  xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" version="1.1">',
+                            '<defs>',
+                                '<linearGradient id="gradient-black" x1="0%" y1="100%" x2="0%" y2="0%">',
+                                    '<stop offset="0%" stop-color="#000000" stop-opacity="1"></stop>',
+                                    '<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>',
+                                '</linearGradient>',
+                                '<linearGradient id="gradient-white" x1="0%" y1="100%" x2="100%" y2="100%">',
+                                    '<stop offset="0%" stop-color="#ffffff" stop-opacity="1"></stop>',
+                                    '<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>',
+                                '</linearGradient>',
+                            '</defs>',
+                            '<rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-white)"></rect>',
+                            '<rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>',
+                        '</svg>',
+                    '</div>',
+                    '<div id="picker-indicator"></div>',
+                '</div>',
+
+                '<div id="sliders">',
+                    '<div id="slider">',
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="30px" height="300px" version="1.1">',
+                            '<defs>',
+                                '<linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">',
+                                    '<stop offset="0%" stop-color="#ff0000" stop-opacity="1"></stop>',
+                                    '<stop offset="8%" stop-color="#ff7f00" stop-opacity="1"></stop>',
+                                    '<stop offset="17%" stop-color="#ffff00" stop-opacity="1"></stop>',
+                                    '<stop offset="25%" stop-color="#80ff00" stop-opacity="1"></stop>',
+                                    '<stop offset="33%" stop-color="#00ff00" stop-opacity="1"></stop>',
+                                    '<stop offset="42%" stop-color="#00ff80" stop-opacity="1"></stop>',
+                                    '<stop offset="50%" stop-color="#00ffff" stop-opacity="1"></stop>',
+                                    '<stop offset="58%" stop-color="#0080ff" stop-opacity="1"></stop>',
+                                    '<stop offset="67%" stop-color="#0000ff" stop-opacity="1"></stop>',
+                                    '<stop offset="75%" stop-color="#8000ff" stop-opacity="1"></stop>',
+                                    '<stop offset="83%" stop-color="#ff00ff" stop-opacity="1"></stop>',
+                                    '<stop offset="92%" stop-color="#ff007f" stop-opacity="1"></stop>',
+                                    '<stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>',
+                                '</linearGradient>',
+                            '</defs>',
+                            '<rect width="30px" height="300px" fill="url(#gradient-hsv)"></rect>',
+                        '</svg>',
+                    '</div>',
+                    '<div id="slider-indicator"></div>',
+                '</div>',
+
+                '<div id="numbers">',
+                    '<label><span>H</span><input type="" name="" id="h" maxLength="3"> 度</label>',
+                    '<label><span>S</span><input type="" name="" id="s" maxLength="3"> %</label>',
+                    '<label><span>B</span><input type="" name="" id="v" maxLength="3"> %</label>',
+                    '<label><span>R</span><input type="" name="" id="r" maxLength="3"></label>',
+                    '<label><span>G</span><input type="" name="" id="g" maxLength="3"></label>',
+                    '<label><span>B</span><input type="" name="" id="b" maxLength="3"></label>',
+                    '<label><span>#</span><input type="" name="" id="hex" maxLength="6"><button id="copyText">复制</button></label>',
+                '</div>',
+
+                '<div id="currentColor"></div>',
+
+                '</div>',
+
+            ].join('');
+
+        cont.innerHTML = colorPickerHTML;
 
             var picker = document.getElementById('picker');
             var silder = document.getElementById('slider');
@@ -110,6 +119,14 @@
                     this.h = colorObj.h;
                     this.s = colorObj.s;
                     this.v = colorObj.v;
+                }
+                if(typeof colorObj.r == 'number'){
+                    this.r = colorObj.r;
+                    this.g = colorObj.g;
+                    this.b = colorObj.b;
+                }
+                if(typeof colorObj.hex == 'string'){
+                    this.hex = colorObj.hex;
                 }
             }
 
@@ -195,34 +212,32 @@
                     b16 = this.hex.slice(4);
                     this.b = parseInt(b16, 16);
                 },
-
-                //显示颜色值和所取颜色
-                showColor: function(){
-                    document.getElementById('h').value = parseInt(color.h);
-                    document.getElementById('s').value = parseInt(color.s * 100);
-                    document.getElementById('v').value = parseInt(color.v * 100);
-                    document.getElementById('r').value = color.r;
-                    document.getElementById('g').value = color.g;
-                    document.getElementById('b').value = color.b;
-                    document.getElementById('hex').value = color.hex;
-                    var colorBac = new Color( {h: color.h, s: 1, v: 1});
-                    colorBac.hsv2rgb();
-                    colorBac.rgb2hex();
-                    picker.style.backgroundColor = '#' + colorBac.hex;
-                    currentColor.style.backgroundColor = '#' + color.hex;
-                    sliderIndicator.style.top = ((360 - color.h )/ 360 * slider.offsetHeight - sliderIndicator.offsetHeight / 2) + 'px';
-                    pickerIndicator.style.left = ( color.s * picker.offsetWidth - pickerIndicator.offsetWidth / 2) + 'px';
-                    pickerIndicator.style.top = ( (1 - color.v ) * picker.offsetHeight - pickerIndicator.offsetHeight / 2) + 'px';
-                }
-
-
-
             }
+
+            //显示颜色值和所取颜色
+            function showColor(colorObj){
+                document.getElementById('h').value = parseInt(colorObj.h);
+                document.getElementById('s').value = parseInt(colorObj.s * 100);
+                document.getElementById('v').value = parseInt(colorObj.v * 100);
+                document.getElementById('r').value = colorObj.r;
+                document.getElementById('g').value = colorObj.g;
+                document.getElementById('b').value = colorObj.b;
+                document.getElementById('hex').value = colorObj.hex;
+                var colorBac = new Color( {h: colorObj.h, s: 1, v: 1});
+                colorBac.hsv2rgb();
+                colorBac.rgb2hex();
+                picker.style.backgroundColor = '#' + colorBac.hex;
+                currentColor.style.backgroundColor = '#' + colorObj.hex;
+                sliderIndicator.style.top = ((360 - colorObj.h )/ 360 * slider.offsetHeight - sliderIndicator.offsetHeight / 2) + 'px';
+                pickerIndicator.style.left = ( colorObj.s * picker.offsetWidth - pickerIndicator.offsetWidth / 2) + 'px';
+                pickerIndicator.style.top = ( (1 - colorObj.v ) * picker.offsetHeight - pickerIndicator.offsetHeight / 2) + 'px';
+            }
+
 
             var color = new Color({h: 56, s: 1, v: 1});
             color.hsv2rgb();
             color.rgb2hex();
-            color.showColor();
+            showColor(color);
 
 
             //获取鼠标
@@ -270,7 +285,7 @@
                     colorObj.h = ( 1 - mouse.y / sliders.offsetHeight ) * 360;
                     colorObj.hsv2rgb();
                     colorObj.rgb2hex();
-                    colorObj.showColor();
+                    showColor(colorObj);
                     var colorBac = new Color( {h: colorObj.h, s: 1, v: 1});
                     colorBac.hsv2rgb();
                     colorBac.rgb2hex();
@@ -290,7 +305,7 @@
                     colorObj.v = (height - mouse.y) / height;
                     colorObj.hsv2rgb();
                     colorObj.rgb2hex();
-                    colorObj.showColor();
+                    showColor(colorObj);
                     pickerIndicator.style.top = (mouse.y - pickerIndicator.offsetHeight / 2) + 'px';
                     pickerIndicator.style.left = (mouse.x - pickerIndicator.offsetWidth / 2) + 'px';
                 };
@@ -322,114 +337,108 @@
                 })
             }
 
-            //输入颜色值颜色改变
-            EventUtil.addHandler(document.getElementById('h'), 'change', function(evt){
-                evt = evt || window.event;
-                color.h = parseInt(document.getElementById('h').value);
-                if ( color.h <= 360){
-                    color.hsv2rgb();
-                    color.rgb2hex();
-                    color.showColor();
-
-                }
-                else{
-                    document.getElementById('h').value = color.h;
-                    alert('请输入0~360之间的数值');
-                }
-            });
-
-            EventUtil.addHandler(document.getElementById('s'), 'change', function(evt){
-                evt = evt || window.event;
-                color.s = Number(document.getElementById('s').value / 100);
-                if ( color.s <= 1){
-                    color.hsv2rgb();
-                    color.rgb2hex();
-                    color.showColor();
-
-                }
-                else{
-                    document.getElementById('s').value = parseInt(color.s * 100);
-                    alert('请输入0~100之间的数值');
-                }
-            });
-
-            EventUtil.addHandler(document.getElementById('v'), 'change', function(evt){
-                evt = evt || window.event;
-                color.v = Number(document.getElementById('v').value / 100);
-                if ( color.v <= 1){
-                    color.hsv2rgb();
-                    color.rgb2hex();
-                    color.showColor();
-
-                }
-                else{
-                    document.getElementById('v').value = parseInt(color.v * 100);
-                    alert('请输入0~100之间的数值');
-                }
-            });
-
-            EventUtil.addHandler(document.getElementById('r'), 'change', function(evt){
-                evt = evt || window.event;
-                color.r = parseInt(document.getElementById('r').value);
-                if ( color.r <= 255){
-                    color.rgb2hsv();
-                    color.rgb2hex();
-                    color.showColor();
-
-                }
-                else{
-                    document.getElementById('v').value = parseInt(color.r);
-                    alert('请输入0~255之间的数值');
-                }
-            });
-
-            EventUtil.addHandler(document.getElementById('g'), 'change', function(evt){
-                evt = evt || window.event;
-                color.g = parseInt(document.getElementById('g').value);
-                if ( color.g <= 255){
-                    color.rgb2hsv();
-                    color.rgb2hex();
-                    color.showColor();
-                }
-                else{
-                    document.getElementById('g').value = parseInt(color.g);
-                    alert('请输入0~255之间的数值');
-                }
-            });
-
-            EventUtil.addHandler(document.getElementById('b'), 'change', function(evt){
-                evt = evt || window.event;
-                color.b = parseInt(document.getElementById('b').value);
-                if ( color.b <= 255){
-                    color.rgb2hsv();
-                    color.rgb2hex();
-                    color.showColor();
-                }
-                else{
-                    document.getElementById('b').value = parseInt(color.b);
-                    alert('请输入0~255之间的数值');
-                }
-            });
-
-            EventUtil.addHandler(document.getElementById('hex'), 'change', function(evt){
-                evt = evt || window.event;
-                color.hex = document.getElementById('hex').value;
-                if ( parseInt(color.hex, 16) >= 0 && parseInt(color.hex, 16) <= parseInt('ffffff', 16) ){
-                    color.hex2rgb();
-                    color.rgb2hsv();
-                    color.showColor();
-                }
-                else{
-                    document.getElementById('hex').value = color.hex;
-                    alert('请输入000000~ffffff之间的数值');
-                }
-            });
-
-
-
             dragging(color, sliders, sliderListener(color));
             dragging(color, pickers, pickerListener(color));
 
+            //输入颜色值颜色改变
+            EventUtil.addHandler(document.getElementById('numbers'), 'change', function(evt){
+                evt = evt || window.event;
+                var target = event.target || event.srcElement;
+                if (target == document.getElementById('h')){
+                    color.h = parseInt(document.getElementById('h').value);
+                    if ( color.h <= 360){
+                        color.hsv2rgb();
+                        color.rgb2hex();
+                        showColor(color);
+                    }
+                    else{
+                        alert('请输入0~360之间的数值');
+                    }
+                }
+                else if ( target == document.getElementById('s')){
+                    color.s = Number(document.getElementById('s').value / 100);
+                    if ( color.s <= 1){
+                        color.hsv2rgb();
+                        color.rgb2hex();
+                        showColor(color);
+
+                    }
+                    else{
+                        alert('请输入0~100之间的数值');
+                    }
+                }
+                else if (target == document.getElementById('v')){
+                    color.v = Number(document.getElementById('v').value / 100);
+                    if ( color.v <= 1){
+                        color.hsv2rgb();
+                        color.rgb2hex();
+                        showColor(color);
+
+                    }
+                    else{
+                        alert('请输入0~100之间的数值');
+                    }
+                }
+                else if (target == document.getElementById('r')){
+                    color.r = parseInt(document.getElementById('r').value);
+                    if ( color.r <= 255){
+                        color.rgb2hsv();
+                        color.rgb2hex();
+                        showColor(color);
+
+                    }
+                    else{
+                        alert('请输入0~255之间的数值');
+                    }
+                }
+                else if (target == document.getElementById('g')){
+                    color.g = parseInt(document.getElementById('g').value);
+                    if ( color.g <= 255){
+                        color.rgb2hsv();
+                        color.rgb2hex();
+                        showColor(color);
+                    }
+                    else{
+                        alert('请输入0~255之间的数值');
+                    }
+                }
+                else if (target == document.getElementById('b')){
+                    color.b = parseInt(document.getElementById('b').value);
+                    if ( color.b <= 255){
+                        color.rgb2hsv();
+                        color.rgb2hex();
+                        showColor(color);
+                    }
+                    else{
+                        alert('请输入0~255之间的数值');
+                    }
+                }
+                else if (target == document.getElementById('hex')){
+                    color.hex = document.getElementById('hex').value;
+                    if ( parseInt(color.hex, 16) >= 0 && parseInt(color.hex, 16) <= parseInt('ffffff', 16) ){
+                        color.hex2rgb();
+                        color.rgb2hsv();
+                        showColor(color);
+                    }
+                    else{
+                        document.getElementById('hex').value = color.hex;
+                        alert('请输入000000~ffffff之间的数值');
+                    }
+                }
+
+            });
+
+            function copyText(){
+                debugger
+                var copyTextBtn = document.getElementById('copyText');
+                EventUtil.addHandler( copyTextBtn, 'click', function(evt){
+                    document.getElementById('hex').select();
+                    debugger
+                    document.execCommand("Copy");
+                })
+            }
+
+            copyText();
 
 
         }
