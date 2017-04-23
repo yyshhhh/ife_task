@@ -20,73 +20,81 @@
 
 
 <script type="text/javascript">
-	var input = document.getElementById('text');
-	var leftin = document.getElementById('leftin');
-	var rightin = document.getElementById('rightin');
-	var leftout = document.getElementById('leftout');
-	var rightout = document.getElementById('rightout');
-	var serchBtn = document.getElementById('serch');
-	var result = document.getElementById('result');
-	
-	// 从左侧插入队列	
-	leftin.onclick = function(){
-		var inputValue = input.value;
-		var inputs = [];
-		inputs = inputValue.split(/[	,， \s]/);
-		for ( var i = 0; i < inputs.length; i ++){
-			var newSpan = document.createElement('span');
-			newSpan.innerHTML = inputs[i];
-			if (result.firstChild == null){
-				result.appendChild(newSpan);
-			}
-			else {
-				result.insertBefore(newSpan,result.firstChild);
-			}
-			newSpan.onclick = function () {
-					result.removeChild(this);
-			}
-		}		
-	}
+var input = document.getElementById('text');
+var leftin = document.getElementById('leftin');
+var rightin = document.getElementById('rightin');
+var leftout = document.getElementById('leftout');
+var rightout = document.getElementById('rightout');
+var serchBtn = document.getElementById('serch');
+var result = document.getElementById('result');
 
-	//从右侧插入队列
-	rightin.onclick = function () {
-		var inputValue = input.value;
-		var inputs = [];
-		inputs = inputValue.split(/[	,， \s]/);
-		for ( var i = 0; i < inputs.length; i ++){
-			var newSpan = document.createElement('span');
-			newSpan.innerHTML = inputs[i];
+// 从左侧插入队列
+leftin.onclick = function() {
+	var inputValue = input.value;
+	var inputs = [];
+	inputs = inputValue.split(/[	,， \s]/);
+	for ( var i = 0; i < inputs.length; i ++){
+		var newSpan = document.createElement('span');
+		newSpan.innerHTML = inputs[i];
+		if (result.firstChild == null){
 			result.appendChild(newSpan);
-			newSpan.onclick = function () {
-					result.removeChild(this);
-			}
 		}
-			
-	}
-
-	// 从左侧移出队列
-	leftout.onclick = function () {
-		result.removeChild(result.firstChild);
-		//or reslut.removeChild(result.childNodes[0]);
-		alert(result.firstChild.innerHTML);
-	}
-
-	// 从右侧移出队列
-	rightout.onclick = function () {
-		result.removeChild(result.lastChild);
-		// or result.removeChild(result.childeNodes[result.childNodes.length-1]);
-		alert(result.lastChild.innerHTML);
-	}
-	
-	//模糊查询
-	serchBtn.onclick = function () {
-		var serchInput = input.value;
-		for ( var i = 0; i < result.childNodes.length; i ++){
-			if (result.childNodes[i].innerHTML.indexOf(serchInput)>-1){
-				result.childNodes[i].style.backgroundColor = 'red';
-			}
+		else {
+			result.insertBefore(newSpan,result.firstChild);
+		}
+		newSpan.onclick = function () {
+				result.removeChild(this);
 		}
 	}
+}
+
+//从右侧插入队列
+rightin.onclick = function () {
+	var inputValue = input.value;
+	var inputs = [];
+	inputs = inputValue.split(/[	,， \s]/);
+	for ( var i = 0; i < inputs.length; i ++){
+		var newSpan = document.createElement('span');
+		newSpan.innerHTML = inputs[i];
+		result.appendChild(newSpan);
+		newSpan.onclick = function () {
+				result.removeChild(this);
+		}
+	}
+
+}
+
+// 从左侧移出队列
+leftout.onclick = function () {
+	var text = result.firstChild.innerHTML
+	result.removeChild(result.firstChild);
+	//or reslut.removeChild(result.childNodes[0]);
+	alert(text);
+}
+
+// 从右侧移出队列
+rightout.onclick = function () {
+	var text = result.lastChild.innerHTML;
+	result.removeChild(result.lastChild);
+	// or result.removeChild(result.childeNodes[result.childNodes.length-1]);
+	alert(text);
+}
+
+//模糊查询
+serchBtn.onclick = function () {
+	var serchInput = input.value,
+		findResult = false;
+	for ( var i = 0; i < result.childNodes.length; i ++){
+		if (result.childNodes[i].innerHTML.indexOf(serchInput)>-1){
+			result.childNodes[i].style.backgroundColor = 'red';
+			findResult = true;
+			break;
+		}
+	}
+	if ( !findResult ){
+		alert("没有找到目标");
+	}
+}
 
 </script>
 

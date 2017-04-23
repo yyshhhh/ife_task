@@ -98,8 +98,8 @@
         function showtrees(tree){
             if (tree instanceof Array){
                 for (var i = 0; i < tree.length; i ++){
-                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = '#eeeeee';}}(i), 3000*(i+1));
-                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = 'white';} }(i), 3000*(i+1)+1500);
+                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = '#eeeeee';}}(i), 1000*(i+1));
+                    setTimeout(function(i){ return function() {tree[i].style.backgroundColor = 'white';} }(i), 1000*(i+1)+500);
                 }
             }
         }
