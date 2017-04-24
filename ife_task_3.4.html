@@ -168,7 +168,7 @@
 			<span></span>
 			<span></span>
 			<span></span>
-		</div>	
+		</div>
 	</div>
 	<div class="bottom">
 		<input type="" name="" id="order">
@@ -184,16 +184,16 @@
 			y: 5,
 			dir: 0
 		};
-		
+
 
 		var blocks = document.getElementById('blocks');
 		var block = document.createElement('div');
 
 		shine(obj);
-		
+
 		//移动后出现方块的格子坐标为x1,y1
 		function shine( obj ){
-			
+
 			blocks.children[obj.y].children[obj.x].appendChild(block);
 			block.className = 'block';
 			var deg = ((obj.dir%4 == 0 && 0) || (obj.dir%4 == 1 && -90) || (obj.dir%4 == 2 && 180) || (obj.dir%4 == 3 && 90)) +  'deg';
@@ -222,7 +222,7 @@
 		function go (obj){
 			var dirr = obj.dir % 4;
 			switch(dirr){
-				case 0: 
+				case 0:
 					if (obj.y > 0){
 						--obj.y;
 					}
@@ -263,24 +263,24 @@
 				go(obj);
 				shine(obj);
 			}
-			else if (order.value.toLowerCase() == 'tun lef'){
+			else if (order.value.toLowerCase() == 'turn left'){
 				turnLef (obj);
 				shine(obj);
 			}
-			else if (order.value.toLowerCase() == 'tun rig'){
+			else if (order.value.toLowerCase() == 'turn right'){
 				turnRig (obj);
 				shine(obj);
 			}
-			else if (order.value.toLowerCase() == 'tun bac'){
+			else if (order.value.toLowerCase() == 'turn bac'){
 				turnBac (obj);
-				shine(obj); 
+				shine(obj);
 			}
 			else {
 				alert('请输入正确的指令');
 			}
 		}
 
-	
+
 	</script>
 </body>
 </html>

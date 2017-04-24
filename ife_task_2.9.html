@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>task 2.7</title>
+    <title>task 2.9</title>
     <style type="text/css">
         #big{height: 40px;}
 
@@ -16,6 +16,7 @@
 
         #cont .selected{background-color: #86ffff;}
         #cont .show{background-color: #eeeeee;}
+        #cont .focus{background-color: #cb7eff;}
 
 
 
@@ -119,6 +120,12 @@
 
         var tree = []; //存储节点
 
+
+        //去除字符串左右两端空格
+        String.prototype.trim=function(){
+    　　    return this.replace(/(^\s*)|(\s*$)/g, "");
+    　　 }
+
         //阻止事件冒泡
         function stopPropagation(e) {
             e = e || window.event;
@@ -174,14 +181,21 @@
         buttonSer.onclick = function(){
             var search = input.value;
             dfsTree();
+            resetSelect(tree);
             var iii = false;
-            for ( var i = 0; i < tree.length; i ++){
-                if( tree[i].nodeValue.toLowerCase() == search.toLowerCase()) {
-                    tree[i].style.backgroundColor = 'pink';
-                    iii = true;
-                    break;
+            tree.forEach( function(e) {
+                if( e.firstChild.nodeType == 3 ){
+                    if ( e.firstChild.nodeValue.trim().toLowerCase() == search.toLowerCase()){
+                        addClass(e, 'focus');
+                        setTimeout(function(e){
+                            return function(){
+                                removeClass(e, 'focus');
+                            };
+                        }(e), 1000);
+                        iii = true;
+                    }
                 }
-            }
+            });
             if (!(iii)) alert('请输入正确的查询字符');
         };
 
@@ -207,14 +221,6 @@
             createTree();
         }
 
-        function postDel(node){
-            if (node){
-                if (node.firstChild) arguments.callee(node.firstChild);
-                if (node.nextSibling) arguments.callee(node.nextSibling);
-                node = null;
-            }
-        }
-
          //深度遍历
         function DFS(node) {
             if (node){
@@ -237,6 +243,7 @@
 
         //显示遍历的变化
         function showtrees(tree){
+            resetSelect(tree);
             if (tree.length > 0 ){
                 for (var i = 0; i < tree.length; i ++){
                     setTimeout(function(i){ return function() {tree[i].style.backgroundColor = '#eeeeee';}}(i), 1000*(i+1));

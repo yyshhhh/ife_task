@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>task 3.4</title>
 	<style type="text/css">
+		#boxs{display: inline-block; width: 600px; }
+
 		.top{margin-left: 51px; height: 51px;}
 		.top div{float: left; width: 51px; text-align: center; font: 20px/51px SimSun;}
 
@@ -20,10 +22,13 @@
 
 		#block{position: absolute; left: 0; top: 0; transition:1s; width: 50px; height: 50px; background: url(http://images.yyshhhh.com/3.4block.png); background-repeat: no-repeat;}
 
+		#instr{display: inline-block; font: 14px/28px Microsoft Yahei;}
+
 	}
 	</style>
 </head>
 <body>
+<div id="boxs">
 	<div class="top">
 		<div>1</div>
 		<div>2</div>
@@ -169,12 +174,32 @@
 			<span></span>
 			<span></span>
 		</div>
-		<div id="block"></div>	
+		<div id="block"></div>
 	</div>
 	<div class="bottom">
 		<input type="" name="" id="order">
 		<input type="button" name="" value="执行" id="btn">
 	</div>
+</div>
+<div id="instr">
+	<pre>
+	说明：
+	小方块的蓝色部分是小方块的前进方向
+	命令：
+	go           向前进方向前进一格
+	turn lef     逆时针旋转九十度
+	turn rig     顺时针旋转九十度
+	turn bac     旋转一百八十度
+	tra lef      向左移动一格
+	move lef     前进方向改为向左并向左前进一格
+	tra rig      向右移动一格
+	move rig     前进方向改为向右并向右前进一格
+	tra top      向上移动一格
+	move top     前进方向改为向上并向上前进一格
+	tra bot      向下移动一格
+	move bot     前进方向改为向下并向下前进一格
+	</pre>
+</div>
 
 	<script type="text/javascript">
 		var order = document.getElementById('order');
@@ -185,7 +210,7 @@
 			y: 0,
 			dir: 0
 		};
-		
+
 
 		var blocks = document.getElementById('blocks');
 		var block = document.getElementById('block');
@@ -219,7 +244,7 @@
 		function go (obj){
 			var dirr = obj.dir % 4;
 			switch(dirr){
-				case 0: 
+				case 0:
 					if (obj.y > 0){
 						--obj.y;
 					}
@@ -365,17 +390,17 @@
 				go(obj);
 				shine(obj);
 			}
-			else if (order.value.toLowerCase() == 'tun lef'){
+			else if (order.value.toLowerCase() == 'turn lef'){
 				turnLef (obj);
 				shine(obj);
 			}
-			else if (order.value.toLowerCase() == 'tun rig'){
+			else if (order.value.toLowerCase() == 'turn rig'){
 				turnRig (obj);
 				shine(obj);
 			}
-			else if (order.value.toLowerCase() == 'tun bac'){
+			else if (order.value.toLowerCase() == 'turn bac'){
 				turnBac (obj);
-				shine(obj); 
+				shine(obj);
 			}
 
 			else if(order.value.toLowerCase() == 'tra lef'){
@@ -414,7 +439,7 @@
 			}
 		}
 
-	
+
 	</script>
 </body>
 </html>
